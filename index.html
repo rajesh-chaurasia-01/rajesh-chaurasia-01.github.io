@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Rajesh Chaurasia - Senior Solutions Architect, Liferay DXP specialist, Java architect, and quantum computing researcher.">
+  <meta name="description" content="Rajesh Chaurasia - Senior Solutions Architect, Liferay DXP specialist, Java architect, and Qulacs RetinaVision hybrid quantum-classical eye disease detection researcher.">
   <title>Rajesh Chaurasia | Senior Solutions Architect</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -694,12 +694,204 @@
       gap: 1rem;
     }
 
+    .research-grid--support {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .retina-focus {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
     .research-card,
+    .retina-hero-card,
+    .retina-workflow,
+    .disease-card,
     .cert-card {
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: rgba(255, 255, 255, 0.82);
       box-shadow: var(--shadow-sm);
+    }
+
+    .retina-hero-card {
+      position: relative;
+      overflow: hidden;
+      padding: 1.6rem;
+      border-left: 5px solid var(--teal);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(242, 251, 250, 0.96) 52%, rgba(245, 249, 255, 0.96)),
+        var(--surface);
+    }
+
+    .retina-hero-card h3 {
+      max-width: 780px;
+      color: var(--ink);
+      font-size: clamp(1.7rem, 3vw, 2.65rem);
+      font-weight: 700;
+      line-height: 1.08;
+    }
+
+    .retina-lead {
+      max-width: 820px;
+      margin: 1rem 0 0;
+      color: var(--ink-soft);
+      font-size: 1.02rem;
+    }
+
+    .retina-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin: 1.25rem 0 1rem;
+    }
+
+    .retina-metric {
+      min-height: 108px;
+      padding: 0.95rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.76);
+    }
+
+    .retina-metric strong {
+      display: block;
+      color: var(--teal);
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 2.2rem;
+      line-height: 1;
+    }
+
+    .retina-metric span {
+      display: block;
+      margin-top: 0.45rem;
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 800;
+    }
+
+    .retina-note {
+      margin: 0.75rem 0 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .retina-workflow {
+      padding: 1.2rem;
+      background: linear-gradient(180deg, #ffffff, #f7fbfb);
+    }
+
+    .retina-workflow h3 {
+      color: var(--ink);
+      font-size: 1.45rem;
+      font-weight: 650;
+    }
+
+    .fusion-list,
+    .report-list {
+      display: grid;
+      gap: 0.75rem;
+      margin: 1rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .fusion-list li {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
+      gap: 0.8rem;
+      align-items: start;
+      padding: 0.85rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.74);
+    }
+
+    .fusion-list i {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius);
+      background: #eef7f4;
+      color: var(--teal);
+    }
+
+    .fusion-list strong,
+    .report-list strong {
+      display: block;
+      color: var(--ink);
+      font-size: 0.95rem;
+      line-height: 1.35;
+    }
+
+    .fusion-list span,
+    .report-list span {
+      display: block;
+      margin-top: 0.25rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .disease-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .disease-card {
+      min-height: 182px;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .disease-card i {
+      width: 2.2rem;
+      height: 2.2rem;
+      display: grid;
+      place-items: center;
+      margin-bottom: 0.8rem;
+      border-radius: var(--radius);
+      background: #f1f7ff;
+      color: var(--blue);
+    }
+
+    .disease-card h3 {
+      color: var(--ink);
+      font-family: "Inter", system-ui, sans-serif;
+      font-size: 1.02rem;
+      font-weight: 900;
+      line-height: 1.32;
+    }
+
+    .disease-card p {
+      margin: 0.55rem 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .portal-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 1rem;
+    }
+
+    .portal-stack span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0.3rem 0.58rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--ink-soft);
+      font-size: 0.78rem;
+      font-weight: 850;
     }
 
     .research-card {
@@ -711,7 +903,8 @@
       border-left-color: var(--blue);
     }
 
-    .research-card .pill {
+    .research-card .pill,
+    .retina-hero-card .pill {
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
@@ -734,6 +927,11 @@
     .research-card p {
       margin: 0.9rem 0 1rem;
       color: var(--muted);
+    }
+
+    .report-list li {
+      padding-left: 0.9rem;
+      border-left: 3px solid var(--line-strong);
     }
 
     .timeline {
@@ -992,6 +1190,18 @@
         flex-basis: calc((100% - 1rem) / 2);
       }
 
+      .retina-focus {
+        grid-template-columns: 1fr;
+      }
+
+      .disease-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .research-grid--support {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .section-header,
       .contact-inner {
         grid-template-columns: 1fr;
@@ -1037,6 +1247,10 @@
       .hero-metrics,
       .highlight-strip,
       .research-grid,
+      .research-grid--support,
+      .retina-focus,
+      .retina-metrics,
+      .disease-grid,
       .skills-grid,
       .cert-grid {
         grid-template-columns: 1fr;
@@ -1100,7 +1314,7 @@
       </a>
       <nav class="primary-nav" aria-label="Primary navigation">
         <a href="#expertise">Expertise</a>
-        <a href="#quantum">Quantum</a>
+        <a href="#quantum">Focus Area</a>
         <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
@@ -1113,8 +1327,8 @@
       <div class="hero-copy reveal">
         <p class="eyebrow"><i class="fa-solid fa-compass-drafting" aria-hidden="true"></i> Senior Solutions Architect</p>
         <h1>Rajesh Chaurasia</h1>
-        <p class="hero-role">Enterprise architecture, Liferay DXP, Java platforms, and quantum ML research.</p>
-        <p class="hero-lead">I design dependable portals and integration platforms for global programs, while exploring hybrid classical-quantum approaches for healthcare diagnostics and cryptography.</p>
+        <p class="hero-role">Enterprise architecture, Liferay DXP, Java platforms, and hybrid quantum-classical ML research.</p>
+        <p class="hero-lead">I design dependable portals and integration platforms for global programs, while building Qulacs-powered RetinaVision concepts for early eye disease detection across cataract, glaucoma, diabetic retinopathy, and AMD.</p>
         <div class="hero-actions" aria-label="Primary actions">
           <a class="btn btn-primary" href="#contact"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Contact Rajesh</a>
           <a class="btn btn-secondary" href="#expertise"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> View Expertise</a>
@@ -1153,8 +1367,8 @@
       </article>
       <article class="highlight-card reveal">
         <i class="fa-solid fa-atom" aria-hidden="true"></i>
-        <strong>Quantum computing research</strong>
-        <span>Qiskit, quantum walks, QRNG, QML, and healthcare image classification.</span>
+        <strong>Hybrid eye diagnostics</strong>
+        <span>Qulacs RetinaVision, QML feature transforms, clinical PDF reports, and retinal disease screening.</span>
       </article>
       <article class="highlight-card reveal">
         <i class="fa-solid fa-users-gear" aria-hidden="true"></i>
@@ -1208,15 +1422,15 @@
                 <span class="card-number">02</span>
               </div>
               <h3>Quantum ML</h3>
-              <p>Hybrid classical-quantum research for image classification, quantum random number generation, and cryptography workflows.</p>
+              <p>Hybrid classical-quantum research for retinal image classification, Qulacs feature maps, quantum random number generation, and cryptography workflows.</p>
               <ul class="proof-list">
-                <li><i class="fa-solid fa-check" aria-hidden="true"></i> Cataract anomaly detection using quantum image methods</li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i> RetinaVision screening for cataract, glaucoma, diabetic retinopathy, and AMD</li>
                 <li><i class="fa-solid fa-check" aria-hidden="true"></i> QRNG framework integrated with RSA key generation</li>
               </ul>
               <div class="tag-row">
-                <span class="tag">Qiskit</span>
+                <span class="tag">Qulacs</span>
                 <span class="tag">QML</span>
-                <span class="tag">Quantum Walk</span>
+                <span class="tag">Hybrid ML</span>
                 <span class="tag">Python</span>
               </div>
             </article>
@@ -1309,22 +1523,102 @@
     <section class="section" id="quantum">
       <div class="section-header reveal">
         <div>
-          <p class="section-kicker">Research track</p>
-          <h2>Quantum research</h2>
+          <p class="section-kicker">Focus area</p>
+          <h2>Qulacs RetinaVision AI</h2>
         </div>
-        <p>Current explorations at the intersection of classical engineering discipline and quantum computing models.</p>
+        <p>A fused research and product direction that combines the RetinaVision README clinical workflow with the Micro Quantum Systems flyer experience.</p>
       </div>
 
-      <div class="research-grid">
-        <article class="research-card reveal">
-          <span class="pill"><i class="fa-solid fa-eye" aria-hidden="true"></i> Healthcare diagnostics</span>
-          <h3>Quantum Inspired Image Processing for Accurate Eye Anomaly Detection</h3>
-          <p>Hybrid model combining classical feature extraction with quantum image classification for cataract identification, using amplitude encoding, angle encoding, discrete-time quantum walks, and swap tests.</p>
-          <div class="tag-row">
-            <span class="tag">Qiskit 2.0</span>
-            <span class="tag">QML</span>
-            <span class="tag">Cataract Detection</span>
+      <div class="retina-focus">
+        <article class="retina-hero-card reveal">
+          <span class="pill"><i class="fa-solid fa-eye" aria-hidden="true"></i> Eye disease detection</span>
+          <h3>Hybrid quantum plus classical screening for cataract, glaucoma, diabetic retinopathy, and AMD.</h3>
+          <p class="retina-lead">RetinaVision analyzes retinal fundus photographs as a clinician-reviewed decision-support system. Classical image processing handles raw fundus quality, vessel, disc, macula, contrast, and lesion cues, while Qulacs-backed quantum circuits transform features and support decision making for faster, more robust early detection.</p>
+
+          <div class="retina-metrics" aria-label="RetinaVision capabilities">
+            <div class="retina-metric"><strong>6</strong><span>screened classes including normal and refractive error</span></div>
+            <div class="retina-metric"><strong>16</strong><span>quantitative clinical parameters in each report</span></div>
+            <div class="retina-metric"><strong>&lt;1s</strong><span>PDF report and JSON result target workflow</span></div>
           </div>
+
+          <div class="tag-row">
+            <span class="tag">Qulacs Quantum Engine</span>
+            <span class="tag">Hybrid ML</span>
+            <span class="tag">Fundus Imaging</span>
+            <span class="tag">Clinical Decision Support</span>
+          </div>
+
+          <p class="retina-note">Decision support only: final diagnosis, treatment, and referral remain clinician-led.</p>
+        </article>
+
+        <aside class="retina-workflow reveal" aria-label="Hybrid RetinaVision workflow">
+          <h3>Fusion pipeline</h3>
+          <ul class="fusion-list">
+            <li>
+              <i class="fa-solid fa-camera-retro" aria-hidden="true"></i>
+              <span><strong>Fundus image intake</strong><span>Accepts standard retinal photographs from common clinical capture workflows.</span></span>
+            </li>
+            <li>
+              <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+              <span><strong>Classical feature extraction</strong><span>Processes contrast, optic disc, macula, vessels, blur, drusen, exudates, and lesion indicators.</span></span>
+            </li>
+            <li>
+              <i class="fa-solid fa-atom" aria-hidden="true"></i>
+              <span><strong>Quantum feature transform</strong><span>Uses quantum circuits for feature mapping and decision support through the Qulacs engine.</span></span>
+            </li>
+            <li>
+              <i class="fa-solid fa-file-medical" aria-hidden="true"></i>
+              <span><strong>Clinical output</strong><span>Returns ranked differential diagnosis, confidence, risk level, flags, recommended investigations, and follow-up timeline.</span></span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+
+      <div class="disease-grid" aria-label="RetinaVision target conditions">
+        <article class="disease-card reveal">
+          <i class="fa-solid fa-cloud" aria-hidden="true"></i>
+          <h3>Cataract</h3>
+          <p>Lens haze, reduced contrast, color shift, and image clarity patterns for early screening.</p>
+        </article>
+        <article class="disease-card reveal">
+          <i class="fa-solid fa-circle-dot" aria-hidden="true"></i>
+          <h3>Glaucoma</h3>
+          <p>Cup-to-disc ratio, RNFL thickness, optic disc asymmetry, and high-risk structural cues.</p>
+        </article>
+        <article class="disease-card reveal">
+          <i class="fa-solid fa-droplet" aria-hidden="true"></i>
+          <h3>Diabetic Retinopathy</h3>
+          <p>Microaneurysms, exudates, vessel tortuosity, and neovascularization indicators.</p>
+        </article>
+        <article class="disease-card reveal">
+          <i class="fa-solid fa-bullseye" aria-hidden="true"></i>
+          <h3>AMD</h3>
+          <p>Drusen, retinal pigment epithelium changes, macular damage, and neovascularization signals.</p>
+        </article>
+      </div>
+
+      <div class="research-grid research-grid--support">
+        <article class="research-card reveal">
+          <span class="pill"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Micro Quantum Systems</span>
+          <h3>One composite workspace: simulation, diagnostics, reports, and learning.</h3>
+          <p>The home page flyer frames RetinaVision inside a broader MQS portal: quantum circuit experiments, AI-Quantum eye diagnostics, concise quantum concepts, eye disease reports, and a knowledge base for applied learning.</p>
+          <div class="portal-stack" aria-label="Micro Quantum Systems portal areas">
+            <span>Quantum Circuit Simulator</span>
+            <span>AI-Quantum Eye Diagnostics</span>
+            <span>Eye Disease Reports</span>
+            <span>Quantum Concepts</span>
+            <span>Knowledge Base</span>
+          </div>
+        </article>
+
+        <article class="research-card reveal">
+          <span class="pill"><i class="fa-solid fa-file-waveform" aria-hidden="true"></i> Report and API workflow</span>
+          <h3>Clinician-friendly outputs with integration-ready data.</h3>
+          <p>Each analysis can return a print-ready clinical PDF and structured JSON for EMR or HIS integration, keeping the work useful for both review and system-to-system workflows.</p>
+          <ul class="report-list">
+            <li><strong>Report</strong><span>Primary diagnosis, confidence score, ranked differential diagnosis, risk level, clinical flags, and recommended investigations.</span></li>
+            <li><strong>API</strong><span>Endpoints for JSON prediction, PDF report download, PDF plus JSON response, batch analysis, health checks, and model metadata.</span></li>
+          </ul>
         </article>
 
         <article class="research-card reveal">

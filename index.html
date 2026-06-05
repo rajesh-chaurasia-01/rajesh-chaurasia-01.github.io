@@ -549,7 +549,8 @@
 
   /* ── CONTACT ── */
   #contact-section {
-    background: var(--navy);
+    background: #eeeae2;
+    border-top: 1px solid var(--border);
     padding: 6rem 4rem;
     position: relative;
     overflow: hidden;
@@ -560,8 +561,8 @@
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      linear-gradient(rgba(10,22,40,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10,22,40,0.04) 1px, transparent 1px);
     background-size: 48px 48px;
   }
   .contact-inner {
@@ -573,7 +574,7 @@
   .contact-eyebrow {
     font-family: 'DM Mono', monospace;
     font-size: 0.65rem;
-    color: var(--teal-lt);
+    color: var(--teal);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     margin-bottom: 1rem;
@@ -581,13 +582,13 @@
   .contact-heading {
     font-family: 'DM Serif Display', serif;
     font-size: 2.8rem;
-    color: #fff;
+    color: var(--navy);
     margin-bottom: 1rem;
     letter-spacing: -0.02em;
   }
   .contact-sub {
     font-size: 0.9rem;
-    color: rgba(255,255,255,0.5);
+    color: var(--muted);
     margin-bottom: 3rem;
     font-family: 'DM Mono', monospace;
     letter-spacing: 0.04em;
@@ -600,32 +601,35 @@
     display: flex; align-items: center; gap: 0.5rem;
     font-family: 'DM Mono', monospace;
     font-size: 0.75rem;
-    color: rgba(255,255,255,0.6);
+    color: var(--muted);
     text-decoration: none;
     letter-spacing: 0.05em;
     padding: 0.65rem 1.3rem;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid var(--border);
     border-radius: 2px;
+    background: var(--surface);
     transition: all 0.25s;
+    box-shadow: var(--card-shadow);
   }
-  .c-link:hover { color: #fff; border-color: var(--teal-lt); background: rgba(13,115,119,0.15); }
+  .c-link:hover { color: var(--teal); border-color: var(--teal); box-shadow: 0 4px 16px rgba(13,115,119,0.12); }
 
   .location-note {
     font-family: 'DM Mono', monospace;
     font-size: 0.68rem;
-    color: rgba(255,255,255,0.3);
+    color: var(--muted2);
     letter-spacing: 0.08em;
   }
 
   /* ── FOOTER ── */
   footer {
-    background: #070f1e;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
     padding: 1.8rem 4rem;
     display: flex; justify-content: space-between; align-items: center;
     position: relative; z-index: 1;
   }
-  .ft { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: rgba(255,255,255,0.25); letter-spacing: 0.08em; }
-  .ft em { color: var(--teal-lt); font-style: normal; }
+  .ft { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted2); letter-spacing: 0.08em; }
+  .ft em { color: var(--teal); font-style: normal; }
 
   /* ── SCROLL FADE ── */
   .reveal {
@@ -980,7 +984,7 @@
 <section id="contact-section">
   <div class="contact-inner">
     <div class="contact-eyebrow reveal">// Open to opportunities</div>
-    <div class="contact-heading reveal">Let's Build Something<br><em style="font-style:italic;color:rgba(13,163,133,0.9)">Extraordinary</em></div>
+    <div class="contact-heading reveal">Let's Build Something<br><em style="font-style:italic;color:var(--teal)">Extraordinary</em></div>
     <div class="contact-sub reveal">Classical, quantum, or somewhere in between</div>
     <div class="contact-links reveal">
       <a href="mailto:rajesh.yalee@gmail.com" class="c-link">✉ rajesh.yalee@gmail.com</a>

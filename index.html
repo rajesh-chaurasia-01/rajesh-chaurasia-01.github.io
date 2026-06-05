@@ -12,22 +12,24 @@
   <script>document.documentElement.classList.add("js");</script>
   <style>
     :root {
-      --page: #f7fbfa;
-      --page-2: #eef7f6;
+      --page: #f8fcf9;
+      --page-2: #edf7f1;
       --surface: #ffffff;
-      --surface-soft: #f5f9ff;
-      --ink: #172126;
-      --ink-soft: #31444d;
-      --muted: #60727c;
-      --line: #dbe8e6;
-      --line-strong: #bfd1cf;
-      --teal: #087f7b;
-      --blue: #2f6fd6;
-      --amber: #b87813;
-      --coral: #d75a4a;
-      --green: #2f8f5b;
-      --shadow-sm: 0 10px 24px rgba(31, 53, 61, 0.08);
-      --shadow-md: 0 24px 60px rgba(31, 53, 61, 0.12);
+      --surface-soft: #f3f8ff;
+      --ink: #13262c;
+      --ink-soft: #2f4851;
+      --muted: #607984;
+      --line: #d8e6df;
+      --line-strong: #b9cec6;
+      --teal: #0a7c75;
+      --blue: #3d6fd8;
+      --amber: #c48625;
+      --coral: #cd6255;
+      --green: #2f8d67;
+      --violet: #6d63c8;
+      --rose: #bd5572;
+      --shadow-sm: 0 12px 26px rgba(28, 49, 56, 0.08);
+      --shadow-md: 0 26px 64px rgba(28, 49, 56, 0.13);
       --radius: 8px;
       --max: 1180px;
       --header-h: 78px;
@@ -44,8 +46,9 @@
     body {
       margin: 0;
       background:
-        linear-gradient(135deg, rgba(8, 127, 123, 0.08), transparent 32%),
-        linear-gradient(225deg, rgba(47, 111, 214, 0.08), transparent 38%),
+        linear-gradient(135deg, rgba(10, 124, 117, 0.12), transparent 34%),
+        linear-gradient(225deg, rgba(109, 99, 200, 0.08), transparent 38%),
+        linear-gradient(18deg, rgba(196, 134, 37, 0.07), transparent 44%),
         var(--page);
       color: var(--ink);
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -60,10 +63,10 @@
       z-index: -1;
       pointer-events: none;
       background-image:
-        linear-gradient(rgba(23, 33, 38, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(23, 33, 38, 0.04) 1px, transparent 1px);
-      background-size: 52px 52px;
-      mask-image: linear-gradient(to bottom, #000 0%, transparent 72%);
+        linear-gradient(rgba(19, 38, 44, 0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(19, 38, 44, 0.028) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(to bottom, #000 0%, transparent 66%);
     }
 
     img {
@@ -99,8 +102,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(247, 251, 250, 0.88);
-      border-bottom: 1px solid rgba(191, 209, 207, 0.7);
+      background: rgba(248, 252, 249, 0.9);
+      border-bottom: 1px solid rgba(185, 206, 198, 0.74);
       backdrop-filter: blur(18px);
     }
 
@@ -128,7 +131,7 @@
       display: grid;
       place-items: center;
       border-radius: var(--radius);
-      background: linear-gradient(135deg, var(--teal), var(--blue));
+      background: linear-gradient(135deg, var(--teal), var(--violet));
       color: #fff;
       box-shadow: var(--shadow-sm);
     }
@@ -148,13 +151,14 @@
       font-size: 0.93rem;
       font-weight: 700;
       text-decoration: none;
-      transition: background 180ms ease, color 180ms ease;
+      transition: background 180ms ease, color 180ms ease, box-shadow 180ms ease;
     }
 
     .primary-nav a:hover,
     .primary-nav a:focus-visible {
-      background: #e8f4f2;
+      background: #edf7f2;
       color: var(--teal);
+      box-shadow: inset 0 0 0 1px rgba(10, 124, 117, 0.08);
       outline: none;
     }
 
@@ -179,9 +183,9 @@
       gap: 0.55rem;
       margin: 0 0 1.1rem;
       padding: 0.35rem 0.72rem;
-      border: 1px solid rgba(8, 127, 123, 0.24);
+      border: 1px solid rgba(10, 124, 117, 0.24);
       border-radius: var(--radius);
-      background: rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.78);
       color: var(--teal);
       font-size: 0.84rem;
       font-weight: 800;
@@ -247,14 +251,14 @@
     }
 
     .btn-primary {
-      background: var(--ink);
+      background: linear-gradient(135deg, var(--ink), #0a6d72);
       color: #fff;
       box-shadow: var(--shadow-sm);
     }
 
     .btn-primary:hover {
-      background: var(--teal);
-      box-shadow: 0 18px 34px rgba(8, 127, 123, 0.22);
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      box-shadow: 0 18px 34px rgba(10, 124, 117, 0.22);
     }
 
     .btn-secondary {
@@ -264,7 +268,7 @@
     }
 
     .btn-secondary:hover {
-      border-color: var(--blue);
+      border-color: var(--amber);
       box-shadow: var(--shadow-sm);
     }
 

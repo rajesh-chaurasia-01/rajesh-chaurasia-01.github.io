@@ -1,1292 +1,1664 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rajesh Chaurasia | Senior Solutions Architect & Quantum Researcher</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-<style>
-  :root {
-    --bg:       #f7f5f0;
-    --bg2:      #eeeae2;
-    --surface:  #ffffff;
-    --navy:     #0a1628;
-    --navy2:    #162440;
-    --teal:     #0d7377;
-    --teal-lt:  #14a085;
-    --gold:     #c8922a;
-    --gold-lt:  #e8a83a;
-    --violet:   #5b3fa6;
-    --text:     #1a1a2e;
-    --muted:    #6b7280;
-    --muted2:   #9ca3af;
-    --border:   #ddd8cf;
-    --border2:  rgba(10,22,40,0.08);
-    --card-shadow: 0 2px 20px rgba(10,22,40,0.07);
-    --card-hover:  0 8px 40px rgba(10,22,40,0.13);
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rajesh Chaurasia - Senior Solutions Architect, Liferay DXP specialist, Java architect, and quantum computing researcher.">
+  <title>Rajesh Chaurasia | Senior Solutions Architect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,750&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <style>
+    :root {
+      --page: #f7fbfa;
+      --page-2: #eef7f6;
+      --surface: #ffffff;
+      --surface-soft: #f5f9ff;
+      --ink: #172126;
+      --ink-soft: #31444d;
+      --muted: #60727c;
+      --line: #dbe8e6;
+      --line-strong: #bfd1cf;
+      --teal: #087f7b;
+      --blue: #2f6fd6;
+      --amber: #b87813;
+      --coral: #d75a4a;
+      --green: #2f8f5b;
+      --shadow-sm: 0 10px 24px rgba(31, 53, 61, 0.08);
+      --shadow-md: 0 24px 60px rgba(31, 53, 61, 0.12);
+      --radius: 8px;
+      --max: 1180px;
+      --header-h: 78px;
+    }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    overflow-x: hidden;
-    line-height: 1.6;
-  }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  /* ── GRID BACKGROUND ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(10,22,40,0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(10,22,40,0.035) 1px, transparent 1px);
-    background-size: 48px 48px;
-    pointer-events: none;
-    z-index: 0;
-  }
+    body {
+      margin: 0;
+      background:
+        linear-gradient(135deg, rgba(8, 127, 123, 0.08), transparent 32%),
+        linear-gradient(225deg, rgba(47, 111, 214, 0.08), transparent 38%),
+        var(--page);
+      color: var(--ink);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.1rem 4rem;
-    background: rgba(247,245,240,0.88);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-  }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(23, 33, 38, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 33, 38, 0.04) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: linear-gradient(to bottom, #000 0%, transparent 72%);
+    }
 
-  .nav-logo {
-    font-family: 'DM Mono', monospace;
-    font-weight: 500;
-    font-size: 0.85rem;
-    color: var(--navy);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    display: flex; align-items: center; gap: 0.6rem;
-  }
-  .nav-logo-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--teal);
-    animation: pulse-dot 2.5s ease-in-out infinite;
-  }
-  @keyframes pulse-dot {
-    0%,100% { box-shadow: 0 0 0 0 rgba(13,115,119,0.4); }
-    50% { box-shadow: 0 0 0 6px rgba(13,115,119,0); }
-  }
+    img {
+      display: block;
+      max-width: 100%;
+    }
 
-  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
-  .nav-links a {
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.03em;
-    transition: color 0.2s;
-    position: relative;
-  }
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -3px; left: 0; right: 0;
-    height: 1.5px;
-    background: var(--teal);
-    transform: scaleX(0);
-    transition: transform 0.2s;
-  }
-  .nav-links a:hover { color: var(--navy); }
-  .nav-links a:hover::after { transform: scaleX(1); }
+    a {
+      color: inherit;
+    }
 
-  /* ── MAIN WRAPPER ── */
-  main { position: relative; z-index: 1; }
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      z-index: 999;
+      background: var(--ink);
+      color: #fff;
+      padding: 0.7rem 1rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+    }
 
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: flex; align-items: center;
-    padding: 8rem 4rem 5rem;
-    position: relative;
-    overflow: hidden;
-  }
+    .skip-link:focus {
+      top: 1rem;
+    }
 
-  .hero-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 5rem;
-    align-items: center;
-    width: 100%;
-  }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      min-height: var(--header-h);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(247, 251, 250, 0.88);
+      border-bottom: 1px solid rgba(191, 209, 207, 0.7);
+      backdrop-filter: blur(18px);
+    }
 
-  .hero-eyebrow {
-    display: flex; align-items: center; gap: 0.8rem;
-    margin-bottom: 1.5rem;
-  }
-  .eyebrow-chip {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    font-weight: 500;
-    padding: 0.3rem 0.8rem;
-    border-radius: 2px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  .chip-teal {
-    background: rgba(13,115,119,0.1);
-    color: var(--teal);
-    border: 1px solid rgba(13,115,119,0.25);
-  }
-  .chip-gold {
-    background: rgba(200,146,42,0.1);
-    color: var(--gold);
-    border: 1px solid rgba(200,146,42,0.3);
-  }
+    .nav-inner {
+      width: min(var(--max), calc(100% - 2rem));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
 
-  .hero-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(3rem, 5.5vw, 5rem);
-    line-height: 1.05;
-    color: var(--navy);
-    margin-bottom: 0.6rem;
-    letter-spacing: -0.02em;
-  }
-  .hero-name em {
-    font-style: italic;
-    color: var(--teal);
-  }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: var(--ink);
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
 
-  .hero-role {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.82rem;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 1.8rem;
-    font-weight: 500;
-  }
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      color: #fff;
+      box-shadow: var(--shadow-sm);
+    }
 
-  .hero-desc {
-    font-size: 1rem;
-    color: var(--muted);
-    line-height: 1.85;
-    max-width: 520px;
-    margin-bottom: 2.5rem;
-  }
+    .primary-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
 
-  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .primary-nav a {
+      padding: 0.6rem 0.8rem;
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 0.93rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 180ms ease, color 180ms ease;
+    }
 
-  .btn-primary {
-    padding: 0.9rem 2.2rem;
-    background: var(--navy);
-    color: #fff;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 600;
-    font-size: 0.85rem;
-    letter-spacing: 0.02em;
-    text-decoration: none;
-    border-radius: 2px;
-    transition: all 0.25s;
-    border: 1px solid var(--navy);
-  }
-  .btn-primary:hover { background: var(--teal); border-color: var(--teal); box-shadow: 0 4px 20px rgba(13,115,119,0.3); }
+    .primary-nav a:hover,
+    .primary-nav a:focus-visible {
+      background: #e8f4f2;
+      color: var(--teal);
+      outline: none;
+    }
 
-  .btn-outline {
-    padding: 0.9rem 2.2rem;
-    background: transparent;
-    color: var(--navy);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-decoration: none;
-    border-radius: 2px;
-    border: 1px solid var(--border);
-    transition: all 0.25s;
-  }
-  .btn-outline:hover { border-color: var(--navy); background: var(--navy); color: #fff; }
+    main {
+      position: relative;
+    }
 
-  .stats-strip {
-    display: flex; gap: 2.5rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border);
-  }
-  .stat-val {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.2rem;
-    color: var(--navy);
-    line-height: 1;
-  }
-  .stat-val span { color: var(--teal); }
-  .stat-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.62rem;
-    color: var(--muted2);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-top: 0.3rem;
-  }
+    .hero {
+      width: min(var(--max), calc(100% - 2rem));
+      min-height: calc(88svh - var(--header-h));
+      margin: 0 auto;
+      padding: clamp(3rem, 6vw, 6rem) 0 2.5rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.75fr);
+      align-items: center;
+      gap: clamp(2rem, 6vw, 5rem);
+    }
 
-  /* ── QUANTUM ORBITAL VISUAL (light) ── */
-  .hero-visual {
-    display: flex; align-items: center; justify-content: center;
-    position: relative;
-  }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin: 0 0 1.1rem;
+      padding: 0.35rem 0.72rem;
+      border: 1px solid rgba(8, 127, 123, 0.24);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--teal);
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
 
-  .orbital-wrap {
-    position: relative;
-    width: 360px; height: 360px;
-  }
+    .eyebrow i {
+      color: var(--amber);
+    }
 
-  .q-ring {
-    position: absolute;
-    border-radius: 50%;
-    top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    border: 1px solid transparent;
-  }
-  .q-ring-1 {
-    width: 340px; height: 340px;
-    border-color: rgba(13,115,119,0.2);
-    animation: qspin 22s linear infinite;
-  }
-  .q-ring-2 {
-    width: 260px; height: 260px;
-    border-color: rgba(200,146,42,0.25);
-    border-style: dashed;
-    animation: qspin 15s linear infinite reverse;
-  }
-  .q-ring-3 {
-    width: 180px; height: 180px;
-    border-color: rgba(91,63,166,0.2);
-    animation: qspin 10s linear infinite;
-  }
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: "Fraunces", Georgia, serif;
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
 
-  @keyframes qspin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+    .hero h1 {
+      max-width: 780px;
+      font-size: clamp(3.8rem, 9vw, 7.4rem);
+      font-weight: 750;
+      color: var(--ink);
+    }
 
-  .q-node {
-    position: absolute;
-    border-radius: 50%;
-    top: -5px; left: 50%;
-    transform: translateX(-50%);
-  }
-  .qn1 { width:10px;height:10px;background:var(--teal);box-shadow:0 0 12px rgba(13,115,119,0.5); }
-  .qn2 { width:9px;height:9px;background:var(--gold);box-shadow:0 0 12px rgba(200,146,42,0.5);top:auto;bottom:-4px; }
-  .qn3 { width:8px;height:8px;background:var(--violet);box-shadow:0 0 10px rgba(91,63,166,0.5);top:-4px;left:50%; }
+    .hero-role {
+      margin: 1rem 0 0;
+      color: var(--blue);
+      font-size: clamp(1.2rem, 2vw, 1.55rem);
+      font-weight: 800;
+    }
 
-  .q-core {
-    position: absolute;
-    top:50%;left:50%;
-    transform: translate(-50%,-50%);
-  }
-  .q-core-circle {
-    width:120px;height:120px;
-    border-radius:50%;
-    background: radial-gradient(circle, rgba(13,115,119,0.08) 0%, rgba(200,146,42,0.05) 60%, transparent 100%);
-    border: 1.5px solid rgba(13,115,119,0.25);
-    display:flex;align-items:center;justify-content:center;
-    animation: core-pulse 3.5s ease-in-out infinite;
-    box-shadow: 0 0 30px rgba(13,115,119,0.08), inset 0 0 20px rgba(13,115,119,0.04);
-  }
-  @keyframes core-pulse {
-    0%,100% { box-shadow: 0 0 20px rgba(13,115,119,0.08), inset 0 0 15px rgba(13,115,119,0.04); }
-    50% { box-shadow: 0 0 50px rgba(13,115,119,0.18), inset 0 0 30px rgba(13,115,119,0.08); }
-  }
-  .q-core-text {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.55rem;
-    color: var(--teal);
-    text-align: center;
-    line-height: 2;
-    letter-spacing: 0.1em;
-  }
+    .hero-lead {
+      max-width: 680px;
+      margin: 1.3rem 0 0;
+      color: var(--ink-soft);
+      font-size: clamp(1.02rem, 1.8vw, 1.18rem);
+    }
 
-  /* ── SECTION BASE ── */
-  .section-wrap {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 5rem 4rem;
-    position: relative; z-index: 1;
-  }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 2rem;
+    }
 
-  .section-hd {
-    display: flex; align-items: baseline; gap: 1.2rem;
-    margin-bottom: 3.5rem;
-  }
-  .section-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--teal);
-    letter-spacing: 0.15em;
-    flex-shrink: 0;
-  }
-  .section-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.1rem;
-    color: var(--navy);
-    letter-spacing: -0.02em;
-  }
-  .section-rule {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-    margin-left: 0.5rem;
-    align-self: center;
-  }
+    .btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.82rem 1.15rem;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
 
-  /* ── EXPERTISE CAROUSEL ── */
-  .carousel-wrapper {
-    position: relative;
-    overflow: hidden;
-    padding: 0.5rem 0 2.5rem;
-  }
+    .btn:hover {
+      transform: translateY(-2px);
+    }
 
-  .exp-grid {
-    display: flex;
-    gap: 1.4rem;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
-    cursor: grab;
-    user-select: none;
-  }
-  .exp-grid.dragging { cursor: grabbing; transition: none; }
+    .btn-primary {
+      background: var(--ink);
+      color: #fff;
+      box-shadow: var(--shadow-sm);
+    }
 
-  .exp-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 2rem 1.8rem;
-    transition: all 0.3s;
-    box-shadow: var(--card-shadow);
-    position: relative;
-    overflow: hidden;
-    flex: 0 0 calc(33.333% - 1rem);
-    min-width: 0;
-  }
-  .exp-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--teal), var(--gold));
-    transform: scaleX(0);
-    transition: transform 0.3s;
-    transform-origin: left;
-  }
-  .exp-card:hover { transform: translateY(-4px); box-shadow: var(--card-hover); }
-  .exp-card:hover::after { transform: scaleX(1); }
+    .btn-primary:hover {
+      background: var(--teal);
+      box-shadow: 0 18px 34px rgba(8, 127, 123, 0.22);
+    }
 
-  /* carousel nav */
-  .carousel-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.2rem;
-    margin-top: 2rem;
-  }
-  .car-btn {
-    width: 38px; height: 38px;
-    border-radius: 50%;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--navy);
-    font-size: 1rem;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s;
-    box-shadow: var(--card-shadow);
-    flex-shrink: 0;
-  }
-  .car-btn:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
-  .car-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-  .car-btn:hover:disabled { background: var(--surface); color: var(--navy); border-color: var(--border); }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.78);
+      border-color: var(--line-strong);
+      color: var(--ink);
+    }
 
-  .car-dots {
-    display: flex; gap: 0.45rem; align-items: center;
-  }
-  .car-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--border);
-    cursor: pointer;
-    transition: all 0.25s;
-    border: none;
-    padding: 0;
-  }
-  .car-dot.active {
-    background: var(--teal);
-    width: 22px;
-    border-radius: 4px;
-  }
+    .btn-secondary:hover {
+      border-color: var(--blue);
+      box-shadow: var(--shadow-sm);
+    }
 
-  /* ── TOOLTIP ── */
-  .exp-card { position: relative; }
-  .ec-tooltip {
-    position: absolute;
-    bottom: calc(100% + 10px);
-    left: 50%;
-    transform: translateX(-50%) translateY(6px);
-    background: var(--navy);
-    color: #fff;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.06em;
-    padding: 0.55rem 0.9rem;
-    border-radius: 4px;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s, transform 0.2s;
-    z-index: 50;
-    box-shadow: 0 4px 16px rgba(10,22,40,0.2);
-    max-width: 220px;
-    white-space: normal;
-    text-align: center;
-    line-height: 1.55;
-  }
-  .ec-tooltip::after {
-    content: '';
-    position: absolute;
-    top: 100%; left: 50%;
-    transform: translateX(-50%);
-    border: 5px solid transparent;
-    border-top-color: var(--navy);
-  }
-  .exp-card:hover .ec-tooltip {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+      max-width: 680px;
+      margin: 2.2rem 0 0;
+    }
 
-  @media (max-width: 900px) {
-    .exp-card { flex: 0 0 calc(50% - 0.7rem); }
-  }
+    .metric {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 8px 20px rgba(31, 53, 61, 0.04);
+    }
 
-  .ec-icon { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
-  .ec-title {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 700;
-    font-size: 0.92rem;
-    color: var(--navy);
-    margin-bottom: 0.7rem;
-    letter-spacing: 0.01em;
-  }
-  .ec-icon i {
-    font-size: 1.8rem;
-    background: linear-gradient(135deg, var(--teal), var(--gold));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+    .metric strong {
+      display: block;
+      color: var(--ink);
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 2rem;
+      line-height: 1;
+    }
 
-  .cert-icon i {
-    font-size: 1.4rem;
-    color: var(--teal);
-  }
+    .metric span {
+      display: block;
+      margin-top: 0.35rem;
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
 
-  .c-link i {
-    font-size: 0.85rem;
-    color: var(--teal);
-    flex-shrink: 0;
-  }
+    .portrait-panel {
+      position: relative;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 249, 255, 0.92)),
+        var(--surface);
+      box-shadow: var(--shadow-md);
+    }
 
-  .location-note i { color: var(--teal); margin-right: 0.25rem; }
+    .portrait-panel::before {
+      content: "";
+      position: absolute;
+      inset: 1.2rem -0.8rem -0.8rem 1.2rem;
+      z-index: -1;
+      border: 1px solid rgba(8, 127, 123, 0.2);
+      border-radius: var(--radius);
+      background: #e9f7f4;
+    }
 
-  .ec-desc {
-    font-size: 0.84rem;
-    color: var(--muted);
-    line-height: 1.75;
-    margin-bottom: 1.2rem;
-  }
+    .portrait-frame {
+      overflow: hidden;
+      border-radius: var(--radius);
+      aspect-ratio: 4 / 5;
+      background: #e8efef;
+    }
 
-  .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.62rem;
-    padding: 0.22rem 0.6rem;
-    border-radius: 2px;
-    letter-spacing: 0.06em;
-  }
-  .t-teal { background: rgba(13,115,119,0.08); color: var(--teal); border: 1px solid rgba(13,115,119,0.2); }
-  .t-gold { background: rgba(200,146,42,0.08); color: var(--gold); border: 1px solid rgba(200,146,42,0.2); }
-  .t-violet { background: rgba(91,63,166,0.08); color: var(--violet); border: 1px solid rgba(91,63,166,0.2); }
-  .t-navy { background: rgba(10,22,40,0.06); color: var(--navy2); border: 1px solid rgba(10,22,40,0.12); }
+    .portrait-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 26%;
+    }
 
-  /* ── QUANTUM RESEARCH ── */
-  .qr-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--teal);
-    border-radius: 0 4px 4px 0;
-    padding: 2.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: var(--card-shadow);
-    transition: all 0.3s;
-    position: relative;
-  }
-  .qr-card:hover { box-shadow: var(--card-hover); border-left-color: var(--gold); }
+    .portrait-caption {
+      display: grid;
+      gap: 0.75rem;
+      padding: 1rem 0.25rem 0.2rem;
+    }
 
-  .qr-badge {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    color: var(--violet);
-    background: rgba(91,63,166,0.07);
-    border: 1px solid rgba(91,63,166,0.2);
-    padding: 0.25rem 0.75rem;
-    border-radius: 2px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
+    .caption-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
 
-  .qr-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.25rem;
-    color: var(--navy);
-    margin-bottom: 1rem;
-    line-height: 1.35;
-  }
+    .caption-name {
+      font-weight: 800;
+      color: var(--ink);
+    }
 
-  .qr-desc {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.85;
-    margin-bottom: 1.5rem;
-  }
+    .caption-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--green);
+      font-size: 0.82rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
 
-  /* ── TIMELINE ── */
-  .timeline { position: relative; padding-left: 1.5rem; }
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0.5rem; bottom: 0;
-    width: 1px;
-    background: linear-gradient(180deg, var(--teal), var(--gold), var(--border));
-  }
+    .status-dot {
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 999px;
+      background: currentColor;
+      box-shadow: 0 0 0 5px rgba(47, 143, 91, 0.14);
+    }
 
-  .tl-item {
-    position: relative;
-    padding: 0 0 2.8rem 2.2rem;
-  }
-  .tl-item::before {
-    content: '';
-    position: absolute;
-    left: -4px; top: 0.45rem;
-    width: 9px; height: 9px;
-    border-radius: 50%;
-    background: var(--surface);
-    border: 2px solid var(--teal);
-    box-shadow: 0 0 0 3px rgba(13,115,119,0.12);
-  }
+    .portrait-caption p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
 
-  .tl-date {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--teal);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
-  }
-  .tl-company {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.15rem;
-    color: var(--navy);
-    margin-bottom: 0.15rem;
-  }
-  .tl-role {
-    font-size: 0.82rem;
-    color: var(--gold);
-    font-weight: 600;
-    margin-bottom: 0.7rem;
-  }
-  .tl-desc {
-    font-size: 0.84rem;
-    color: var(--muted);
-    line-height: 1.75;
-    max-width: 640px;
-  }
+    .highlight-strip {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      padding: 0 0 clamp(3rem, 6vw, 5rem);
+    }
 
-  /* ── SKILLS ── */
-  .skills-2col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem 5rem;
-  }
-  .sk-item { }
-  .sk-hd { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
-  .sk-name {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--navy);
-  }
-  .sk-pct {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--teal);
-  }
-  .sk-track {
-    height: 4px;
-    background: var(--bg2);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  .sk-fill {
-    height: 100%;
-    border-radius: 4px;
-    background: linear-gradient(90deg, var(--teal), var(--gold));
-    animation: fillBar 1.6s cubic-bezier(0.4,0,0.2,1) forwards;
-    transform: scaleX(0);
-    transform-origin: left;
-  }
-  @keyframes fillBar { to { transform: scaleX(1); } }
+    .highlight-card {
+      min-height: 142px;
+      padding: 1.15rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: var(--shadow-sm);
+    }
 
-  /* ── CERTS ── */
-  .cert-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-    gap: 1rem;
-  }
-  .cert-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1.4rem 1.4rem;
-    display: flex; align-items: flex-start; gap: 1rem;
-    box-shadow: var(--card-shadow);
-    transition: all 0.3s;
-  }
-  .cert-card:hover { box-shadow: var(--card-hover); border-color: rgba(200,146,42,0.4); }
-  .cert-icon { font-size: 1.5rem; flex-shrink: 0; }
-  .cert-name { font-size: 0.85rem; font-weight: 700; color: var(--navy); margin-bottom: 0.2rem; }
-  .cert-org { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--gold); letter-spacing: 0.06em; }
+    .highlight-card i {
+      width: 2.2rem;
+      height: 2.2rem;
+      display: grid;
+      place-items: center;
+      margin-bottom: 0.9rem;
+      border-radius: var(--radius);
+      background: #edf7f5;
+      color: var(--teal);
+      font-size: 1rem;
+    }
 
-  /* ── CONTACT ── */
-  #contact-section {
-    background: #eeeae2;
-    border-top: 1px solid var(--border);
-    padding: 6rem 4rem;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-  }
-  #contact-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(10,22,40,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(10,22,40,0.04) 1px, transparent 1px);
-    background-size: 48px 48px;
-  }
-  .contact-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-    position: relative; z-index: 1;
-  }
-  .contact-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--teal);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-  .contact-heading {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.8rem;
-    color: var(--navy);
-    margin-bottom: 1rem;
-    letter-spacing: -0.02em;
-  }
-  .contact-sub {
-    font-size: 0.9rem;
-    color: var(--muted);
-    margin-bottom: 3rem;
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 0.04em;
-  }
-  .contact-links {
-    display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;
-    margin-bottom: 2.5rem;
-  }
-  .c-link {
-    display: flex; align-items: center; gap: 0.5rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    padding: 0.65rem 1.3rem;
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    background: var(--surface);
-    transition: all 0.25s;
-    box-shadow: var(--card-shadow);
-  }
-  .c-link:hover { color: var(--teal); border-color: var(--teal); box-shadow: 0 4px 16px rgba(13,115,119,0.12); }
+    .highlight-card strong {
+      display: block;
+      color: var(--ink);
+      font-size: 1.02rem;
+      line-height: 1.3;
+    }
 
-  .location-note {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--muted2);
-    letter-spacing: 0.08em;
-  }
+    .highlight-card span {
+      display: block;
+      margin-top: 0.45rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
-    padding: 1.8rem 4rem;
-    display: flex; justify-content: space-between; align-items: center;
-    position: relative; z-index: 1;
-  }
-  .ft { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted2); letter-spacing: 0.08em; }
-  .ft em { color: var(--teal); font-style: normal; }
+    .section {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+      padding: clamp(3.5rem, 7vw, 6rem) 0;
+      scroll-margin-top: 96px;
+    }
 
-  /* ── SCROLL FADE ── */
-  .reveal {
-    opacity: 0; transform: translateY(24px);
-    transition: opacity 0.65s ease, transform 0.65s ease;
-  }
-  .reveal.on { opacity: 1; transform: none; }
+    .section-header {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(260px, 0.58fr);
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: 2rem;
+    }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    #hero { padding: 7rem 1.5rem 3rem; }
-    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .hero-visual { order: -1; }
-    .orbital-wrap { width: 280px; height: 280px; }
-    .q-ring-1 { width:260px;height:260px; }
-    .q-ring-2 { width:200px;height:200px; }
-    .q-ring-3 { width:140px;height:140px; }
-    .section-wrap { padding: 4rem 1.5rem; }
-    .skills-2col { grid-template-columns: 1fr; gap: 1.5rem; }
-    footer, #contact-section { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .stats-strip { gap: 1.5rem; flex-wrap: wrap; }
-    .hero-name { font-size: 2.8rem; }
-    .exp-card { flex: 0 0 calc(100% - 0rem); }
-  }
-</style>
+    .section-kicker {
+      margin: 0 0 0.6rem;
+      color: var(--teal);
+      font-size: 0.86rem;
+      font-weight: 900;
+    }
+
+    .section h2 {
+      color: var(--ink);
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 700;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .carousel-shell {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: var(--shadow-md);
+    }
+
+    .carousel-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(90deg, #ffffff, #f2fbfa 52%, #f5f9ff);
+    }
+
+    .carousel-label {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: var(--ink-soft);
+      font-weight: 900;
+    }
+
+    .carousel-label i {
+      color: var(--coral);
+    }
+
+    .carousel-controls {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      display: inline-grid;
+      place-items: center;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      transition: background 180ms ease, color 180ms ease, transform 180ms ease, border-color 180ms ease;
+    }
+
+    .icon-btn:hover,
+    .icon-btn:focus-visible {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #fff;
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .carousel-window {
+      overflow: hidden;
+      padding: 1rem;
+    }
+
+    .expertise-track {
+      display: flex;
+      gap: 1rem;
+      will-change: transform;
+      transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .expertise-track.is-dragging {
+      cursor: grabbing;
+      transition: none;
+    }
+
+    .expertise-card {
+      position: relative;
+      min-height: 372px;
+      flex: 0 0 calc((100% - 2rem) / 3);
+      display: flex;
+      flex-direction: column;
+      padding: 1.35rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, #fff, #f7fbfb);
+      box-shadow: 0 10px 26px rgba(31, 53, 61, 0.06);
+      transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+      user-select: none;
+    }
+
+    .expertise-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border-top: 5px solid var(--accent, var(--teal));
+      pointer-events: none;
+    }
+
+    .expertise-card.is-active {
+      border-color: rgba(8, 127, 123, 0.42);
+      box-shadow: 0 22px 46px rgba(31, 53, 61, 0.13);
+      transform: translateY(-4px);
+    }
+
+    .card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-icon {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--accent, var(--teal)) 13%, white);
+      color: var(--accent, var(--teal));
+      font-size: 1.35rem;
+    }
+
+    .card-number {
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+
+    .expertise-card h3 {
+      margin-bottom: 0.75rem;
+      color: var(--ink);
+      font-size: 1.55rem;
+      font-weight: 650;
+    }
+
+    .expertise-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .proof-list {
+      display: grid;
+      gap: 0.52rem;
+      margin: 1.15rem 0 1.1rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .proof-list li {
+      display: flex;
+      gap: 0.55rem;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+      font-weight: 650;
+    }
+
+    .proof-list i {
+      margin-top: 0.28rem;
+      color: var(--accent, var(--teal));
+      font-size: 0.72rem;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.42rem;
+      margin-top: auto;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0.26rem 0.56rem;
+      border: 1px solid color-mix(in srgb, var(--accent, var(--teal)) 26%, white);
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--accent, var(--teal)) 8%, white);
+      color: color-mix(in srgb, var(--accent, var(--teal)) 78%, black);
+      font-size: 0.77rem;
+      font-weight: 850;
+    }
+
+    .carousel-footer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      padding: 0 1rem 1rem;
+    }
+
+    .progress {
+      height: 6px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e3eeec;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--teal), var(--blue), var(--coral));
+      transition: width 300ms ease;
+    }
+
+    .dots {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      background: #c8d8d6;
+      cursor: pointer;
+      transition: width 180ms ease, background 180ms ease;
+    }
+
+    .dot.is-active {
+      width: 28px;
+      background: var(--teal);
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .research-card,
+    .cert-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .research-card {
+      padding: 1.45rem;
+      border-left: 5px solid var(--teal);
+    }
+
+    .research-card:nth-child(2) {
+      border-left-color: var(--blue);
+    }
+
+    .research-card .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 1rem;
+      padding: 0.32rem 0.65rem;
+      border-radius: var(--radius);
+      background: #eef7f4;
+      color: var(--teal);
+      font-size: 0.78rem;
+      font-weight: 900;
+    }
+
+    .research-card h3 {
+      color: var(--ink);
+      font-size: 1.45rem;
+      font-weight: 650;
+      line-height: 1.18;
+    }
+
+    .research-card p {
+      margin: 0.9rem 0 1rem;
+      color: var(--muted);
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 22px;
+      top: 1rem;
+      bottom: 1rem;
+      width: 2px;
+      background: linear-gradient(var(--teal), var(--blue), var(--amber));
+    }
+
+    .timeline-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 1.5rem;
+      padding: 1.2rem 1.2rem 1.2rem 4.2rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 8px 22px rgba(31, 53, 61, 0.05);
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 14px;
+      top: 1.45rem;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 4px solid #fff;
+      background: var(--teal);
+      box-shadow: 0 0 0 1px var(--line-strong);
+    }
+
+    .timeline-date {
+      color: var(--teal);
+      font-weight: 900;
+    }
+
+    .timeline-company {
+      color: var(--ink);
+      font-weight: 900;
+      font-size: 1.06rem;
+    }
+
+    .timeline-role {
+      margin: 0.1rem 0 0.45rem;
+      color: var(--blue);
+      font-weight: 800;
+    }
+
+    .timeline-desc {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-card {
+      padding: 1.05rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 8px 22px rgba(31, 53, 61, 0.05);
+    }
+
+    .skill-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .skill-head span:last-child {
+      color: var(--teal);
+    }
+
+    .skill-track {
+      height: 9px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e2eeec;
+    }
+
+    .skill-fill {
+      width: var(--level);
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--teal), var(--blue));
+      transform-origin: left;
+      transform: scaleX(0);
+    }
+
+    .skill-fill.animate {
+      animation: fill-skill 1200ms ease forwards;
+    }
+
+    @keyframes fill-skill {
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .cert-card {
+      min-height: 152px;
+      padding: 1rem;
+      display: grid;
+      align-content: start;
+      gap: 0.75rem;
+    }
+
+    .cert-card i {
+      width: 2.2rem;
+      height: 2.2rem;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius);
+      background: #eef7f4;
+      color: var(--teal);
+    }
+
+    .cert-card strong {
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .cert-card span {
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .contact {
+      margin-top: clamp(3rem, 7vw, 6rem);
+      padding: clamp(3rem, 7vw, 5rem) 1rem;
+      background:
+        linear-gradient(90deg, rgba(8, 127, 123, 0.1), rgba(47, 111, 214, 0.08)),
+        #f4faf9;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .contact-inner {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(320px, 0.6fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .contact h2 {
+      font-size: clamp(2.2rem, 5vw, 4.4rem);
+    }
+
+    .contact p {
+      max-width: 660px;
+      margin: 1rem 0 0;
+      color: var(--ink-soft);
+      font-size: 1.05rem;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-height: 50px;
+      padding: 0.75rem 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.88);
+      color: var(--ink);
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(31, 53, 61, 0.05);
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .contact-link:hover {
+      transform: translateY(-2px);
+      border-color: var(--teal);
+    }
+
+    .contact-link i {
+      width: 2rem;
+      color: var(--teal);
+      text-align: center;
+    }
+
+    footer {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 1.5rem 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 600ms ease, transform 600ms ease;
+    }
+
+    .js .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1040px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .portrait-panel {
+        max-width: 520px;
+      }
+
+      .highlight-strip,
+      .cert-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .expertise-card {
+        flex-basis: calc((100% - 1rem) / 2);
+      }
+
+      .section-header,
+      .contact-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      :root {
+        --header-h: 70px;
+      }
+
+      .site-header {
+        position: static;
+      }
+
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 0.85rem 0;
+      }
+
+      .primary-nav {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .primary-nav a {
+        padding: 0.45rem 0.55rem;
+      }
+
+      .hero {
+        padding-top: 2.2rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(3.1rem, 15vw, 5rem);
+      }
+
+      .hero-metrics,
+      .highlight-strip,
+      .research-grid,
+      .skills-grid,
+      .cert-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .carousel-toolbar,
+      footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .carousel-footer {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .dots {
+        flex-wrap: wrap;
+      }
+
+      .expertise-card {
+        flex-basis: 100%;
+        min-height: 360px;
+      }
+
+      .timeline::before {
+        left: 16px;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+        padding-left: 3.3rem;
+      }
+
+      .timeline-item::before {
+        left: 8px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">
-    <span class="nav-logo-dot"></span>
-    RAJESH CHAURASIA
-  </a>
-  <ul class="nav-links">
-    <li><a href="#expertise">Expertise</a></li>
-    <li><a href="#quantum">Quantum</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#certifications">Certifications</a></li>
-    <li><a href="#contact-section">Contact</a></li>
-  </ul>
-</nav>
-
-<main>
-
-<!-- ── HERO ── -->
-<section id="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-eyebrow">
-        <span class="eyebrow-chip chip-teal">Senior Solutions Architect</span>
-        <span class="eyebrow-chip chip-gold">Quantum Researcher</span>
-      </div>
-      <h1 class="hero-name">Rajesh<br><em>Chaurasia</em></h1>
-      <div class="hero-role">// Building at the intersection of Classical &amp; Quantum</div>
-      <p class="hero-desc">
-        23+ years engineering enterprise portals and Java solutions. Now pioneering Quantum Machine Learning — from eye anomaly detection to quantum cryptography — while leading architecture at Orbis International.
-      </p>
-      <div class="hero-btns">
-        <a href="#experience" class="btn-primary">View Experience</a>
-        <a href="#contact-section" class="btn-outline">Get In Touch</a>
-      </div>
-      <div class="stats-strip">
-        <div>
-          <div class="stat-val">23<span>+</span></div>
-          <div class="stat-label">Years Java</div>
-        </div>
-        <div>
-          <div class="stat-val">13<span>+</span></div>
-          <div class="stat-label">Years Liferay</div>
-        </div>
-        <div>
-          <div class="stat-val">12<span>+</span></div>
-          <div class="stat-label">Portal Impls</div>
-        </div>
-        <div>
-          <div class="stat-val">∞</div>
-          <div class="stat-label">Quantum States</div>
-        </div>
-      </div>
+  <header class="site-header">
+    <div class="nav-inner">
+      <a class="brand" href="#hero" aria-label="Rajesh Chaurasia home">
+        <span class="brand-mark">RC</span>
+        <span>Rajesh Chaurasia</span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <a href="#expertise">Expertise</a>
+        <a href="#quantum">Quantum</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="hero-visual">
-      <div class="orbital-wrap">
-        <div class="q-ring q-ring-1"><div class="q-node qn1"></div></div>
-        <div class="q-ring q-ring-2"><div class="q-node qn2"></div></div>
-        <div class="q-ring q-ring-3"><div class="q-node qn3"></div></div>
-        <div class="q-core">
-          <div class="q-core-circle">
-            <div class="q-core-text">|ψ⟩<br>ARCHITECT<br>&amp;<br>RESEARCHER</div>
+  <main id="main">
+    <section class="hero" id="hero">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><i class="fa-solid fa-compass-drafting" aria-hidden="true"></i> Senior Solutions Architect</p>
+        <h1>Rajesh Chaurasia</h1>
+        <p class="hero-role">Enterprise architecture, Liferay DXP, Java platforms, and quantum ML research.</p>
+        <p class="hero-lead">I design dependable portals and integration platforms for global programs, while exploring hybrid classical-quantum approaches for healthcare diagnostics and cryptography.</p>
+        <div class="hero-actions" aria-label="Primary actions">
+          <a class="btn btn-primary" href="#contact"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Contact Rajesh</a>
+          <a class="btn btn-secondary" href="#expertise"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> View Expertise</a>
+        </div>
+        <div class="hero-metrics" aria-label="Career metrics">
+          <div class="metric"><strong>22+</strong><span>Years engineering</span></div>
+          <div class="metric"><strong>20M+</strong><span>Lives served by portals</span></div>
+          <div class="metric"><strong>50+</strong><span>Engineers mentored</span></div>
+        </div>
+      </div>
+
+      <aside class="portrait-panel reveal" aria-label="Profile portrait">
+        <div class="portrait-frame">
+          <img src="assets/profile.jpg" alt="Rajesh Chaurasia profile photo" width="960" height="1280">
+        </div>
+        <div class="portrait-caption">
+          <div class="caption-top">
+            <span class="caption-name">Rajesh Chaurasia</span>
+            <span class="caption-status"><span class="status-dot" aria-hidden="true"></span> Open to remote</span>
+          </div>
+          <p>Ghaziabad, UP, India - architecture leadership across Orbis, LTIMindtree, Infogain, HCL, Wipro, Iris, and Accenture.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="highlight-strip" aria-label="Profile highlights">
+      <article class="highlight-card reveal">
+        <i class="fa-solid fa-building-columns" aria-hidden="true"></i>
+        <strong>Liferay DXP modernization</strong>
+        <span>Portal upgrades, search, security, integrations, and operational hardening.</span>
+      </article>
+      <article class="highlight-card reveal">
+        <i class="fa-solid fa-code" aria-hidden="true"></i>
+        <strong>Enterprise Java architecture</strong>
+        <span>Spring Boot, REST APIs, JPA/Hibernate, CI/CD, and quality governance.</span>
+      </article>
+      <article class="highlight-card reveal">
+        <i class="fa-solid fa-atom" aria-hidden="true"></i>
+        <strong>Quantum computing research</strong>
+        <span>Qiskit, quantum walks, QRNG, QML, and healthcare image classification.</span>
+      </article>
+      <article class="highlight-card reveal">
+        <i class="fa-solid fa-users-gear" aria-hidden="true"></i>
+        <strong>Technical leadership</strong>
+        <span>Architectural reviews, proposals, mentoring, demos, and training programs.</span>
+      </article>
+    </section>
+
+    <section class="section" id="expertise">
+      <div class="section-header reveal">
+        <div>
+          <p class="section-kicker">Core strengths</p>
+          <h2>Expertise carousel</h2>
+        </div>
+        <p>A brighter, more tactile carousel for the major areas of your portfolio, with clear evidence points and technology tags.</p>
+      </div>
+
+      <div class="carousel-shell reveal" data-carousel>
+        <div class="carousel-toolbar">
+          <div class="carousel-label"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Architecture capability map</div>
+          <div class="carousel-controls">
+            <button class="icon-btn" type="button" data-prev aria-label="Previous expertise"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button>
+            <button class="icon-btn" type="button" data-next aria-label="Next expertise"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ── EXPERTISE ── -->
-<div id="expertise" class="section-wrap">
-  <div class="section-hd reveal">
-    <span class="section-num">// 01</span>
-    <h2 class="section-title">Areas of Expertise</h2>
-    <div class="section-rule"></div>
-  </div>
+        <div class="carousel-window">
+          <div class="expertise-track" id="expertiseTrack">
+            <article class="expertise-card" style="--accent: var(--teal);">
+              <div class="card-head">
+                <span class="card-icon"><i class="fa-solid fa-building-columns" aria-hidden="true"></i></span>
+                <span class="card-number">01</span>
+              </div>
+              <h3>Liferay DXP</h3>
+              <p>Portal architecture across DXP 7.4, 7.2, 7.1, 6.2, and 6.1 with upgrades, performance tuning, and production operations.</p>
+              <ul class="proof-list">
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i> Cybersight Consult and Operation Smile portals</li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i> HP SG Partner Portal and global intranet programs</li>
+              </ul>
+              <div class="tag-row">
+                <span class="tag">DXP 7.4</span>
+                <span class="tag">OSGi</span>
+                <span class="tag">ElasticSearch</span>
+                <span class="tag">MySQL</span>
+              </div>
+            </article>
 
-  <div class="carousel-wrapper reveal">
-    <div class="exp-grid" id="expCarousel">
+            <article class="expertise-card" style="--accent: var(--blue);">
+              <div class="card-head">
+                <span class="card-icon"><i class="fa-solid fa-atom" aria-hidden="true"></i></span>
+                <span class="card-number">02</span>
+              </div>
+              <h3>Quantum ML</h3>
+              <p>Hybrid classical-quantum research for image classification, quantum random number generation, and cryptography workflows.</p>
+              <ul class="proof-list">
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i> Cataract anomaly detection using quantum image methods</li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i> QRNG framework integrated with RSA key generation</li>
+              </ul>
+              <div class="tag-row">
+                <span class="tag">Qiskit</span>
+                <span class="tag">QML</span>
+                <span class="tag">Quantum Walk</span>
+                <span class="tag">Python</span>
+              </div>
+            </article>
 
-      <!-- Card 1 -->
-      <div class="exp-card">
-        <div class="ec-tooltip">Hybrid QML models, QRNG cryptography &amp; amplitude encoding — certified by IIT Delhi &amp; Womanium 2024</div>
-        <span class="ec-icon"><i class="fa-solid fa-atom"></i></span>
-        <div class="ec-title">Quantum Computing</div>
-        <div class="ec-desc">Quantum Machine Learning, QRNG for cryptography, hybrid quantum-classical models. IIT Delhi &amp; Womanium certified.</div>
-        <div class="tag-row">
-          <span class="tag t-violet">Qiskit 2.0</span>
-          <span class="tag t-violet">Classiq</span>
-          <span class="tag t-violet">Pennylane</span>
-          <span class="tag t-violet">QML</span>
+            <article class="expertise-card" style="--accent: var(--amber);">
+              <div class="card-head">
+                <span class="card-icon"><i class="fa-brands fa-java" aria-hidden="true"></i></span>
+                <span class="card-number">03</span>
+              </div>
+              <h3>Java Architecture</h3>
+              <p>Full-stack enterprise Java delivery with modern service design, persistence strategy, build automation, and clean API boundaries.</p>
+              <ul class="proof-list">
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i> Java 11 and 21 modernization paths</li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i> Spring Boot, REST, JPA, Hibernate, Maven</li>
+              </ul>
+              <div class="tag-row">
+                <span class="tag">Java 21</span>
+                <span class="tag">Spring Boot</span>
+                <span class="tag">REST APIs</span>
+                <span class="tag">JPA</span>
+              </div>
+            </article>
+
+            <article class="expertise-card" style="--accent: var(--coral);">
+              <div class="card-head">
+                <span class="card-icon"><i class="fa-solid fa-gears" aria-hidden="true"></i></span>
+                <span class="card-number">04</span>
+              </div>
+              <h3>Quality &amp; DevOps</h3>
+              <p>Delivery standards, CI pipelines, static analysis, and APM-led diagnosis for platforms where uptime and speed matter.</p>
+              <ul class="proof-list">
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i> SonarQube quality practices praised globally</li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i> Glowroot and NewRelic production performance work</li>
+              </ul>
+              <div class="tag-row">
+                <span class="tag">Jenkins</span>
+                <span class="tag">SonarQube</span>
+                <span class="tag">Glowroot</span>
+                <span class="tag">NewRelic</span>
+              </div>
+            </article>
+
+            <article class="expertise-card" style="--accent: var(--green);">
+              <div class="card-head">
+                <span class="card-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></span>
+                <span class="card-number">05</span>
+              </div>
+              <h3>Solutions Architecture</h3>
+              <p>End-to-end technical design, discovery, RFP support, audits, platform governance, and stakeholder-facing architecture stories.</p>
+              <ul class="proof-list">
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i> Enterprise portals for healthcare, logistics, retail, and benefits</li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i> Executive demos, architecture reviews, and proposal support</li>
+              </ul>
+              <div class="tag-row">
+                <span class="tag">AWS</span>
+                <span class="tag">Oracle</span>
+                <span class="tag">MySQL</span>
+                <span class="tag">Search</span>
+              </div>
+            </article>
+
+            <article class="expertise-card" style="--accent: var(--teal);">
+              <div class="card-head">
+                <span class="card-icon"><i class="fa-solid fa-users-gear" aria-hidden="true"></i></span>
+                <span class="card-number">06</span>
+              </div>
+              <h3>Technical Leadership</h3>
+              <p>Hands-on mentoring, team enablement, Friday tech sessions, and training programs that raise execution standards.</p>
+              <ul class="proof-list">
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i> Trained and mentored 50+ engineers</li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i> Best Liferay Trainer Award, twice</li>
+              </ul>
+              <div class="tag-row">
+                <span class="tag">Mentoring</span>
+                <span class="tag">Training</span>
+                <span class="tag">Agile</span>
+                <span class="tag">Demos</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="carousel-footer">
+          <div class="progress" aria-hidden="true"><div class="progress-bar" data-progress></div></div>
+          <div class="dots" data-dots aria-label="Carousel pages"></div>
         </div>
       </div>
+    </section>
 
-      <!-- Card 2 -->
-      <div class="exp-card">
-        <div class="ec-tooltip">13+ years — from 6.x plugins to DXP 7.4 OSGi modules, full upgrade cycles, performance tuning &amp; theme customisation</div>
-        <span class="ec-icon"><i class="fa-solid fa-layer-group"></i></span>
-        <div class="ec-title">Liferay DXP</div>
-        <div class="ec-desc">13+ years across Liferay 6.x, 7.x, DXP. Portal implementations, plugin development, upgrades, performance tuning.</div>
-        <div class="tag-row">
-          <span class="tag t-teal">Liferay 7.4</span>
-          <span class="tag t-teal">OSGi</span>
-          <span class="tag t-teal">MVC Portlet</span>
-          <span class="tag t-teal">DXP Upgrade</span>
+    <section class="section" id="quantum">
+      <div class="section-header reveal">
+        <div>
+          <p class="section-kicker">Research track</p>
+          <h2>Quantum research</h2>
         </div>
+        <p>Current explorations at the intersection of classical engineering discipline and quantum computing models.</p>
       </div>
 
-      <!-- Card 3 -->
-      <div class="exp-card">
-        <div class="ec-tooltip">Full-stack enterprise Java since 2002 — REST APIs, Spring Boot microservices, JPA, Hibernate, Maven CI/CD pipelines</div>
-        <span class="ec-icon"><i class="fa-brands fa-java"></i></span>
-        <div class="ec-title">Java Architecture</div>
-        <div class="ec-desc">Full-stack enterprise Java since 2002. Spring Boot, JPA, Hibernate, REST APIs, CI/CD pipelines.</div>
-        <div class="tag-row">
-          <span class="tag t-navy">Java 21</span>
-          <span class="tag t-navy">Spring Boot</span>
-          <span class="tag t-navy">JPA/Hibernate</span>
-          <span class="tag t-navy">Maven</span>
+      <div class="research-grid">
+        <article class="research-card reveal">
+          <span class="pill"><i class="fa-solid fa-eye" aria-hidden="true"></i> Healthcare diagnostics</span>
+          <h3>Quantum Inspired Image Processing for Accurate Eye Anomaly Detection</h3>
+          <p>Hybrid model combining classical feature extraction with quantum image classification for cataract identification, using amplitude encoding, angle encoding, discrete-time quantum walks, and swap tests.</p>
+          <div class="tag-row">
+            <span class="tag">Qiskit 2.0</span>
+            <span class="tag">QML</span>
+            <span class="tag">Cataract Detection</span>
+          </div>
+        </article>
+
+        <article class="research-card reveal">
+          <span class="pill"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Quantum cryptography</span>
+          <h3>QRNG Framework for RSA Encryption</h3>
+          <p>Quantum Random Number Generation workflow using quantum superposition and entanglement to produce unpredictable numbers for stronger key generation in cryptographic applications.</p>
+          <div class="tag-row">
+            <span class="tag">QRNG</span>
+            <span class="tag">RSA</span>
+            <span class="tag">Python 3.13</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="section-header reveal">
+        <div>
+          <p class="section-kicker">Career history</p>
+          <h2>Work experience</h2>
         </div>
+        <p>A focused view of architecture leadership across enterprise portals, healthcare platforms, and global technology teams.</p>
       </div>
 
-      <!-- Card 4 -->
-      <div class="exp-card">
-        <div class="ec-tooltip">CI/CD pipelines, static analysis &amp; APM — quality standards praised by McDonald's globally &amp; HP partner teams</div>
-        <span class="ec-icon"><i class="fa-solid fa-gears"></i></span>
-        <div class="ec-title">Quality &amp; DevOps</div>
-        <div class="ec-desc">CI pipelines, static code analysis, APM monitoring. Quality initiatives praised by McDonald's and HP globally.</div>
-        <div class="tag-row">
-          <span class="tag t-gold">Jenkins</span>
-          <span class="tag t-gold">SonarQube</span>
-          <span class="tag t-gold">Glowroot</span>
-          <span class="tag t-gold">NewRelic</span>
+      <div class="timeline">
+        <article class="timeline-item reveal">
+          <div class="timeline-date">Aug 2023 - Present</div>
+          <div>
+            <div class="timeline-company">Orbis International</div>
+            <div class="timeline-role">Senior Solutions Architect</div>
+            <p class="timeline-desc">Lead architecture for Cybersight Consult and Operation Smile portals. Drove Liferay 7.1 to DXP 7.4 upgrade with Java 11/21, ElasticSearch, and MySQL 8.0.</p>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <div class="timeline-date">Feb 2023 - Jul 2023</div>
+          <div>
+            <div class="timeline-company">LTIMindtree</div>
+            <div class="timeline-role">Associate Director</div>
+            <p class="timeline-desc">Provided strategic technology leadership and enterprise architecture advisory in a senior delivery capacity.</p>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <div class="timeline-date">Nov 2019 - Jul 2022</div>
+          <div>
+            <div class="timeline-company">Infogain</div>
+            <div class="timeline-role">Senior Technical Architect</div>
+            <p class="timeline-desc">Led HP SG Partner Portal upgrade from Liferay 6.1 to DXP 7.2. Solved post-upgrade performance issues using Glowroot and NewRelic APM.</p>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <div class="timeline-date">Jan 2017 - Jun 2019</div>
+          <div>
+            <div class="timeline-company">HCL Technologies</div>
+            <div class="timeline-role">Senior Technical Architect</div>
+            <p class="timeline-desc">Delivered My Toll logistics portal, McDonald's DEP and Campaign Integration with Adobe Campaign and AEM. Advanced CI quality standards with SonarQube.</p>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <div class="timeline-date">Jun 2015 - Jan 2016</div>
+          <div>
+            <div class="timeline-company">Iris Software</div>
+            <div class="timeline-role">Senior Solutions Consultant</div>
+            <p class="timeline-desc">Built LifeCare employee benefits portal capabilities for Lifemart, WorkLife, and reporting tools serving 20M+ lives.</p>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <div class="timeline-date">Apr 2014 - Jun 2015</div>
+          <div>
+            <div class="timeline-company">Accenture Services</div>
+            <div class="timeline-role">Software Engineering Associate Manager</div>
+            <p class="timeline-desc">Led ThomasCook microsite POC on Liferay 6.2, Agile delivery, client demos, and offshore team mentoring.</p>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <div class="timeline-date">Apr 2013 - Apr 2014</div>
+          <div>
+            <div class="timeline-company">Wipro Technologies</div>
+            <div class="timeline-role">Project Lead</div>
+            <p class="timeline-desc">Delivered global employee intranet portal with social features and manager workflows using Liferay 6.2 EE, Spring, and Oracle.</p>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <div class="timeline-date">Dec 2006 - Jun 2011</div>
+          <div>
+            <div class="timeline-company">HCL Technologies</div>
+            <div class="timeline-role">Lead Engineer</div>
+            <p class="timeline-desc">Contributed to Kaplan IAP, eText e-publishing, and Cambridge Assessment solutions. Received HCL Innovation Award and Good Practices Award.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-header reveal">
+        <div>
+          <p class="section-kicker">Technical range</p>
+          <h2>Skills snapshot</h2>
         </div>
+        <p>Readable, recruiter-friendly skill bars that keep the focus on your strongest architecture and research areas.</p>
       </div>
 
-      <!-- Card 5 -->
-      <div class="exp-card">
-        <div class="ec-tooltip">End-to-end solution design for global enterprise portals — technical audits, RFP proposals &amp; C-level presentations</div>
-        <span class="ec-icon"><i class="fa-solid fa-diagram-project"></i></span>
-        <div class="ec-title">Solutions Architecture</div>
-        <div class="ec-desc">End-to-end solution design for enterprise portals. Technical audits, code reviews, proposal writing, client presentations.</div>
-        <div class="tag-row">
-          <span class="tag t-teal">ElasticSearch</span>
-          <span class="tag t-teal">MySQL</span>
-          <span class="tag t-teal">Oracle</span>
-          <span class="tag t-teal">AWS</span>
+      <div class="skills-grid">
+        <div class="skill-card reveal"><div class="skill-head"><span>Java / J2EE</span><span>98%</span></div><div class="skill-track"><div class="skill-fill" style="--level: 98%"></div></div></div>
+        <div class="skill-card reveal"><div class="skill-head"><span>Liferay DXP</span><span>97%</span></div><div class="skill-track"><div class="skill-fill" style="--level: 97%"></div></div></div>
+        <div class="skill-card reveal"><div class="skill-head"><span>Solutions Architecture</span><span>95%</span></div><div class="skill-track"><div class="skill-fill" style="--level: 95%"></div></div></div>
+        <div class="skill-card reveal"><div class="skill-head"><span>Spring / Spring Boot</span><span>90%</span></div><div class="skill-track"><div class="skill-fill" style="--level: 90%"></div></div></div>
+        <div class="skill-card reveal"><div class="skill-head"><span>DevOps / CI</span><span>85%</span></div><div class="skill-track"><div class="skill-fill" style="--level: 85%"></div></div></div>
+        <div class="skill-card reveal"><div class="skill-head"><span>ElasticSearch / Databases</span><span>82%</span></div><div class="skill-track"><div class="skill-fill" style="--level: 82%"></div></div></div>
+        <div class="skill-card reveal"><div class="skill-head"><span>Quantum Computing</span><span>78%</span></div><div class="skill-track"><div class="skill-fill" style="--level: 78%"></div></div></div>
+        <div class="skill-card reveal"><div class="skill-head"><span>Python / QML</span><span>75%</span></div><div class="skill-track"><div class="skill-fill" style="--level: 75%"></div></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="certifications">
+      <div class="section-header reveal">
+        <div>
+          <p class="section-kicker">Credentials</p>
+          <h2>Certifications &amp; awards</h2>
         </div>
+        <p>A compact credential wall that keeps awards and quantum learning visible without overwhelming the page.</p>
       </div>
 
-      <!-- Card 6 -->
-      <div class="exp-card">
-        <div class="ec-tooltip">Trained &amp; mentored 50+ engineers across Wipro, HCL, Infogain &amp; Accenture — Best Liferay Trainer Award ×2</div>
-        <span class="ec-icon"><i class="fa-solid fa-users-gear"></i></span>
-        <div class="ec-title">Technical Leadership</div>
-        <div class="ec-desc">Trainer, mentor, architect. Led teams across Wipro, HCL, Infogain, Accenture. Regular Friday Tech session speaker.</div>
-        <div class="tag-row">
-          <span class="tag t-navy">Agile</span>
-          <span class="tag t-navy">Training</span>
-          <span class="tag t-navy">Mentoring</span>
-          <span class="tag t-navy">Proposals</span>
+      <div class="cert-grid">
+        <article class="cert-card reveal"><i class="fa-solid fa-atom" aria-hidden="true"></i><strong>QNickel Certification</strong><span>Womanium + QWorld, 2024</span></article>
+        <article class="cert-card reveal"><i class="fa-solid fa-microscope" aria-hidden="true"></i><strong>QBronze Certification</strong><span>Womanium + QWorld, 2024</span></article>
+        <article class="cert-card reveal"><i class="fa-solid fa-brain" aria-hidden="true"></i><strong>Pennylane QML Certified</strong><span>Womanium Global Quantum+AI, 2024</span></article>
+        <article class="cert-card reveal"><i class="fa-solid fa-building-columns" aria-hidden="true"></i><strong>Classiq Certification</strong><span>Womanium, 2024</span></article>
+        <article class="cert-card reveal"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><strong>Quantum Computing &amp; ML</strong><span>IIT Delhi CEP, 2024</span></article>
+        <article class="cert-card reveal"><i class="fa-solid fa-globe" aria-hidden="true"></i><strong>Global Quantum+AI Program</strong><span>Womanium, 2024</span></article>
+        <article class="cert-card reveal"><i class="fa-solid fa-trophy" aria-hidden="true"></i><strong>Spearhead Award</strong><span>Infogain, 2020</span></article>
+        <article class="cert-card reveal"><i class="fa-solid fa-star" aria-hidden="true"></i><strong>Spot Award JFM</strong><span>Infogain, 2021</span></article>
+        <article class="cert-card reveal"><i class="fa-solid fa-medal" aria-hidden="true"></i><strong>Best Liferay Trainer x2</strong><span>Infogain</span></article>
+        <article class="cert-card reveal"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><strong>HCL Innovation Award</strong><span>HCL Technologies</span></article>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact-inner">
+        <div class="reveal">
+          <p class="section-kicker">Contact</p>
+          <h2>Let us build dependable platforms with serious curiosity.</h2>
+          <p>Available for senior architecture conversations, Liferay DXP modernization, enterprise Java reviews, and quantum computing collaboration.</p>
+        </div>
+        <div class="contact-list reveal">
+          <a class="contact-link" href="mailto:rajesh.yalee@gmail.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> rajesh.yalee@gmail.com</a>
+          <a class="contact-link" href="tel:+919810807630"><i class="fa-solid fa-mobile-screen" aria-hidden="true"></i> +91-9810807630</a>
+          <a class="contact-link" href="https://github.com/rajesh-chaurasia-01/" target="_blank" rel="noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
+          <a class="contact-link" href="https://www.linkedin.com/in/rajesh-chaurasia-6241b21b/" target="_blank" rel="noreferrer"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
+          <span class="contact-link"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Ghaziabad, UP, India</span>
         </div>
       </div>
+    </section>
+  </main>
 
-    </div><!-- /exp-grid -->
+  <footer>
+    <span>&copy; 2026 Rajesh Chaurasia</span>
+    <span>Senior Solutions Architect - Classical systems, quantum curiosity</span>
+  </footer>
 
-    <!-- nav -->
-    <div class="carousel-nav">
-      <button class="car-btn" id="carPrev" aria-label="Previous"><i class="fa-solid fa-arrow-left"></i></button>
-      <div class="car-dots" id="carDots"></div>
-      <button class="car-btn" id="carNext" aria-label="Next"><i class="fa-solid fa-arrow-right"></i></button>
-    </div>
-  </div><!-- /carousel-wrapper -->
-</div>
+  <script>
+    const revealItems = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
 
-<!-- ── QUANTUM RESEARCH ── -->
-<div id="quantum" class="section-wrap" style="padding-top:0;">
-  <div class="section-hd reveal">
-    <span class="section-num">// 02</span>
-    <h2 class="section-title">Quantum Research</h2>
-    <div class="section-rule"></div>
-  </div>
+      revealItems.forEach((el) => revealObserver.observe(el));
 
-  <div class="qr-card reveal">
-    <div class="tag-row" style="margin-bottom:1rem;">
-      <span class="qr-badge">⬡ Quantum</span>
-      <span class="tag t-violet">Qiskit 2.0</span>
-      <span class="tag t-violet">QML</span>
-      <span class="tag t-navy">Python 3.13</span>
-      <span class="tag t-gold">2025 – Present</span>
-    </div>
-    <div class="qr-title">Quantum Inspired Image Processing for Accurate Eye Anomaly Detection</div>
-    <div class="qr-desc">Developed a Hybrid Quantum Model combining Classical Feature Extraction with Quantum Image Classification for cataract identification. Leverages amplitude encoding, angle encoding, discrete time quantum walks, and swap tests to measure image overlap. Demonstrates real quantum advantage in healthcare diagnostics — superior pattern recognition for cataract detection in large-scale medical image datasets.</div>
-    <div class="tag-row">
-      <span class="tag t-teal">Amplitude Encoding</span>
-      <span class="tag t-teal">Angle Encoding</span>
-      <span class="tag t-teal">Quantum Walk</span>
-      <span class="tag t-teal">Swap Test</span>
-      <span class="tag t-teal">Cataract Detection</span>
-    </div>
-  </div>
+      const skillsObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.querySelectorAll(".skill-fill").forEach((bar) => bar.classList.add("animate"));
+            skillsObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.28 });
 
-  <div class="qr-card reveal">
-    <div class="tag-row" style="margin-bottom:1rem;">
-      <span class="qr-badge">⬡ Quantum</span>
-      <span class="tag t-violet">Qiskit 2.0</span>
-      <span class="tag t-violet">Cryptography</span>
-      <span class="tag t-navy">Python 3.13</span>
-      <span class="tag t-gold">Jan – May 2025</span>
-    </div>
-    <div class="qr-title">QRNG Framework — Quantum Random Number Generation for RSA Encryption</div>
-    <div class="qr-desc">Built a Quantum Random Number Generator leveraging quantum superposition and entanglement to produce truly random numbers for cryptographic applications. Integrated QRNG into RSA key generation to produce unpredictable keys resistant to pattern-based attacks — addressing fundamental limitations of classical PRNGs in high-security contexts.</div>
-    <div class="tag-row">
-      <span class="tag t-teal">Quantum Superposition</span>
-      <span class="tag t-teal">Entanglement</span>
-      <span class="tag t-teal">RSA Encryption</span>
-      <span class="tag t-teal">Quantum Cryptography</span>
-    </div>
-  </div>
-</div>
-
-<!-- ── EXPERIENCE ── -->
-<div id="experience" class="section-wrap" style="padding-top:0;">
-  <div class="section-hd reveal">
-    <span class="section-num">// 03</span>
-    <h2 class="section-title">Work History</h2>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="timeline">
-    <div class="tl-item reveal">
-      <div class="tl-date">Aug 2023 — Present</div>
-      <div class="tl-company">Orbis International</div>
-      <div class="tl-role">Senior Solutions Architect</div>
-      <div class="tl-desc">Lead architecture for Cybersight Consult and Operation Smile portals. Drove successful Liferay 7.1 → DXP 7.4 upgrade. Java 11 &amp; 21, ElasticSearch, MySQL 8.0.</div>
-    </div>
-    <div class="tl-item reveal">
-      <div class="tl-date">Feb 2023 — Jul 2023</div>
-      <div class="tl-company">LTIMindtree</div>
-      <div class="tl-role">Associate Director</div>
-      <div class="tl-desc">Strategic technology leadership and enterprise architecture advisory in a senior director capacity.</div>
-    </div>
-    <div class="tl-item reveal">
-      <div class="tl-date">Nov 2019 — Jul 2022</div>
-      <div class="tl-company">Infogain</div>
-      <div class="tl-role">Senior Technical Architect</div>
-      <div class="tl-desc">Led HP SG Partner Portal upgrade from Liferay 6.1 → DXP 7.2. Solved post-upgrade performance issues using Glowroot and NewRelic APM. Won Spearhead Award and Best Liferay Trainer Award.</div>
-    </div>
-    <div class="tl-item reveal">
-      <div class="tl-date">Jan 2017 — Jun 2019</div>
-      <div class="tl-company">HCL Technologies</div>
-      <div class="tl-role">Senior Technical Architect</div>
-      <div class="tl-desc">My Toll logistics portal, McDonald's DEP &amp; Campaign Integration (Adobe Campaign, AEM). CI quality initiatives with SonarQube praised by McDonald's globally.</div>
-    </div>
-    <div class="tl-item reveal">
-      <div class="tl-date">Jun 2015 — Jan 2016</div>
-      <div class="tl-company">Iris Software</div>
-      <div class="tl-role">Senior Solutions Consultant</div>
-      <div class="tl-desc">LifeCare employee benefits portal — Lifemart, WorkLife, reporting tools serving 20M+ lives. Liferay 6.2, Java 1.7.</div>
-    </div>
-    <div class="tl-item reveal">
-      <div class="tl-date">Apr 2014 — Jun 2015</div>
-      <div class="tl-company">Accenture Services</div>
-      <div class="tl-role">Software Engineering Associate Manager</div>
-      <div class="tl-desc">ThomasCook microsite POC on Liferay 6.2. Agile delivery, client demos, offshore team mentoring.</div>
-    </div>
-    <div class="tl-item reveal">
-      <div class="tl-date">Apr 2013 — Apr 2014</div>
-      <div class="tl-company">Wipro Technologies</div>
-      <div class="tl-role">Project Lead</div>
-      <div class="tl-desc">Global Employee Intranet Portal with social features and Manager's Area. Liferay 6.2 EE, Spring, Oracle.</div>
-    </div>
-    <div class="tl-item reveal">
-      <div class="tl-date">Dec 2006 — Jun 2011</div>
-      <div class="tl-company">HCL Technologies</div>
-      <div class="tl-role">Lead Engineer</div>
-      <div class="tl-desc">Kaplan IAP (TDD with Mockito), eText e-publishing, Cambridge Assessment web solutions. HCL Innovation Award &amp; Good Practices Award.</div>
-    </div>
-  </div>
-</div>
-
-<!-- ── SKILLS ── -->
-<div id="skills" class="section-wrap" style="padding-top:0;">
-  <div class="section-hd reveal">
-    <span class="section-num">// 04</span>
-    <h2 class="section-title">Technical Skills</h2>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="skills-2col reveal">
-    <div class="sk-item">
-      <div class="sk-hd"><span class="sk-name">Java / J2EE</span><span class="sk-pct">98%</span></div>
-      <div class="sk-track"><div class="sk-fill" style="width:98%"></div></div>
-    </div>
-    <div class="sk-item">
-      <div class="sk-hd"><span class="sk-name">Liferay DXP</span><span class="sk-pct">97%</span></div>
-      <div class="sk-track"><div class="sk-fill" style="width:97%"></div></div>
-    </div>
-    <div class="sk-item">
-      <div class="sk-hd"><span class="sk-name">Spring / Spring Boot</span><span class="sk-pct">90%</span></div>
-      <div class="sk-track"><div class="sk-fill" style="width:90%"></div></div>
-    </div>
-    <div class="sk-item">
-      <div class="sk-hd"><span class="sk-name">Solutions Architecture</span><span class="sk-pct">95%</span></div>
-      <div class="sk-track"><div class="sk-fill" style="width:95%"></div></div>
-    </div>
-    <div class="sk-item">
-      <div class="sk-hd"><span class="sk-name">Quantum Computing (Qiskit)</span><span class="sk-pct">78%</span></div>
-      <div class="sk-track"><div class="sk-fill" style="width:78%"></div></div>
-    </div>
-    <div class="sk-item">
-      <div class="sk-hd"><span class="sk-name">Python / QML</span><span class="sk-pct">75%</span></div>
-      <div class="sk-track"><div class="sk-fill" style="width:75%"></div></div>
-    </div>
-    <div class="sk-item">
-      <div class="sk-hd"><span class="sk-name">DevOps / CI (Jenkins, Sonar)</span><span class="sk-pct">85%</span></div>
-      <div class="sk-track"><div class="sk-fill" style="width:85%"></div></div>
-    </div>
-    <div class="sk-item">
-      <div class="sk-hd"><span class="sk-name">ElasticSearch / Databases</span><span class="sk-pct">82%</span></div>
-      <div class="sk-track"><div class="sk-fill" style="width:82%"></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ── CERTIFICATIONS ── -->
-<div id="certifications" class="section-wrap" style="padding-top:0;">
-  <div class="section-hd reveal">
-    <span class="section-num">// 05</span>
-    <h2 class="section-title">Certifications &amp; Awards</h2>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="cert-grid">
-    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-atom"></i></span><div><div class="cert-name">QNickel Certification</div><div class="cert-org">Womanium + QWorld · 2024</div></div></div>
-    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-microscope"></i></span><div><div class="cert-name">QBronze Certification</div><div class="cert-org">Womanium + QWorld · 2024</div></div></div>
-    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-brain"></i></span><div><div class="cert-name">Pennylane QML Certified</div><div class="cert-org">Womanium Global Quantum+AI · 2024</div></div></div>
-    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-building-columns"></i></span><div><div class="cert-name">Classiq Certification</div><div class="cert-org">Womanium · 2024</div></div></div>
-    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-graduation-cap"></i></span><div><div class="cert-name">Quantum Computing &amp; ML</div><div class="cert-org">IIT Delhi CEP · 2024</div></div></div>
-    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-globe"></i></span><div><div class="cert-name">Global Quantum+AI Program</div><div class="cert-org">Womanium 2024</div></div></div>
-    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-trophy"></i></span><div><div class="cert-name">Spearhead Award</div><div class="cert-org">Infogain · 2020</div></div></div>
-    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-star"></i></span><div><div class="cert-name">Spot Award JFM</div><div class="cert-org">Infogain · 2021</div></div></div>
-    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-medal"></i></span><div><div class="cert-name">Best Liferay Trainer ×2</div><div class="cert-org">Infogain</div></div></div>
-    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-lightbulb"></i></span><div><div class="cert-name">HCL Innovation Award</div><div class="cert-org">HCL Technologies</div></div></div>
-  </div>
-</div>
-
-</main>
-
-<!-- ── CONTACT ── -->
-<section id="contact-section">
-  <div class="contact-inner">
-    <div class="contact-eyebrow reveal">// Open to opportunities</div>
-    <div class="contact-heading reveal">Let's Build Something<br><em style="font-style:italic;color:var(--teal)">Extraordinary</em></div>
-    <div class="contact-sub reveal">Classical, quantum, or somewhere in between</div>
-    <div class="contact-links reveal">
-      <a href="mailto:rajesh.yalee@gmail.com" class="c-link"><i class="fa-solid fa-envelope"></i> rajesh.yalee@gmail.com</a>
-      <a href="tel:+919810807630" class="c-link"><i class="fa-solid fa-mobile-screen"></i> +91-9810807630</a>
-      <a href="https://github.com/rajesh-chaurasia-01/" target="_blank" class="c-link"><i class="fa-brands fa-github"></i> GitHub</a>
-      <a href="https://www.linkedin.com/in/rajesh-chaurasia-6241b21b/" target="_blank" class="c-link"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-    </div>
-    <div class="location-note reveal"><i class="fa-solid fa-location-dot"></i> Ghaziabad, UP, India &nbsp;·&nbsp; Open to remote &amp; hybrid</div>
-  </div>
-</section>
-
-<footer>
-  <div class="ft">© 2025 <em>Rajesh Chaurasia</em> — Senior Solutions Architect</div>
-  <div class="ft">Built with <em>|ψ⟩</em> quantum inspiration</div>
-</footer>
-
-<script>
-// ── Scroll reveal ──
-const io = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('on'), i * 70);
+      const skillsSection = document.querySelector("#skills");
+      if (skillsSection) {
+        skillsObserver.observe(skillsSection);
+      }
+    } else {
+      revealItems.forEach((el) => el.classList.add("is-visible"));
+      document.querySelectorAll(".skill-fill").forEach((bar) => bar.classList.add("animate"));
     }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// ── Skill bar trigger ──
-const skillIO = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.querySelectorAll('.sk-fill').forEach(b => {
-        b.style.animation = 'none';
-        void b.offsetWidth;
-        b.style.animation = 'fillBar 1.6s cubic-bezier(0.4,0,0.2,1) forwards';
+    document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+      const track = carousel.querySelector(".expertise-track");
+      const cards = Array.from(carousel.querySelectorAll(".expertise-card"));
+      const prev = carousel.querySelector("[data-prev]");
+      const next = carousel.querySelector("[data-next]");
+      const dots = carousel.querySelector("[data-dots]");
+      const progress = carousel.querySelector("[data-progress]");
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let index = 0;
+      let visible = 1;
+      let maxIndex = 0;
+      let autoTimer = null;
+      let startX = 0;
+      let startOffset = 0;
+      let dragging = false;
+
+      function visibleCount() {
+        if (window.innerWidth <= 720) return 1;
+        if (window.innerWidth <= 1040) return 2;
+        return 3;
+      }
+
+      function cardStep() {
+        const style = window.getComputedStyle(track);
+        const gap = parseFloat(style.columnGap || style.gap || "0");
+        return cards[0].getBoundingClientRect().width + gap;
+      }
+
+      function buildDots() {
+        dots.innerHTML = "";
+        for (let i = 0; i <= maxIndex; i += 1) {
+          const dot = document.createElement("button");
+          dot.className = "dot";
+          dot.type = "button";
+          dot.setAttribute("aria-label", "Show expertise page " + (i + 1));
+          dot.addEventListener("click", () => {
+            goTo(i);
+            restartAutoplay();
+          });
+          dots.appendChild(dot);
+        }
+      }
+
+      function setActiveStates() {
+        cards.forEach((card, cardIndex) => {
+          card.classList.toggle("is-active", cardIndex === index);
+        });
+        Array.from(dots.children).forEach((dot, dotIndex) => {
+          dot.classList.toggle("is-active", dotIndex === index);
+        });
+        prev.disabled = index === 0;
+        next.disabled = index === maxIndex;
+        const percent = maxIndex === 0 ? 100 : ((index + 1) / (maxIndex + 1)) * 100;
+        progress.style.width = percent + "%";
+      }
+
+      function goTo(nextIndex) {
+        index = Math.max(0, Math.min(nextIndex, maxIndex));
+        track.style.transform = "translateX(" + (-index * cardStep()) + "px)";
+        setActiveStates();
+      }
+
+      function refresh() {
+        visible = visibleCount();
+        maxIndex = Math.max(0, cards.length - visible);
+        index = Math.min(index, maxIndex);
+        buildDots();
+        goTo(index);
+      }
+
+      function startAutoplay() {
+        if (reducedMotion) return;
+        stopAutoplay();
+        autoTimer = window.setInterval(() => {
+          goTo(index >= maxIndex ? 0 : index + 1);
+        }, 4200);
+      }
+
+      function stopAutoplay() {
+        if (autoTimer) {
+          window.clearInterval(autoTimer);
+          autoTimer = null;
+        }
+      }
+
+      function restartAutoplay() {
+        stopAutoplay();
+        startAutoplay();
+      }
+
+      prev.addEventListener("click", () => {
+        goTo(index - 1);
+        restartAutoplay();
       });
-    }
-  });
-}, { threshold: 0.3 });
-const sk = document.getElementById('skills');
-if (sk) skillIO.observe(sk);
 
-// ── Expertise Carousel ──
-(function () {
-  const track   = document.getElementById('expCarousel');
-  const prevBtn = document.getElementById('carPrev');
-  const nextBtn = document.getElementById('carNext');
-  const dotsEl  = document.getElementById('carDots');
-  if (!track) return;
+      next.addEventListener("click", () => {
+        goTo(index + 1);
+        restartAutoplay();
+      });
 
-  const cards = Array.from(track.querySelectorAll('.exp-card'));
-  let visibleCount = window.innerWidth <= 900 ? 2 : 3;
-  const totalSlides = cards.length - visibleCount + 1; // positions 0..n
-  let current = 0;
+      carousel.addEventListener("mouseenter", stopAutoplay);
+      carousel.addEventListener("mouseleave", startAutoplay);
 
-  // Build dots
-  function buildDots() {
-    dotsEl.innerHTML = '';
-    const count = Math.max(1, cards.length - visibleCount + 1);
-    for (let i = 0; i < count; i++) {
-      const d = document.createElement('button');
-      d.className = 'car-dot' + (i === current ? ' active' : '');
-      d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-      d.addEventListener('click', () => goTo(i));
-      dotsEl.appendChild(d);
-    }
-  }
+      carousel.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") {
+          goTo(index - 1);
+          restartAutoplay();
+        }
+        if (event.key === "ArrowRight") {
+          goTo(index + 1);
+          restartAutoplay();
+        }
+      });
 
-  function getCardWidth() {
-    if (!cards[0]) return 0;
-    const style = window.getComputedStyle(track);
-    const gap   = parseFloat(style.gap) || 22;
-    return cards[0].offsetWidth + gap;
-  }
+      track.addEventListener("pointerdown", (event) => {
+        dragging = true;
+        startX = event.clientX;
+        startOffset = index * cardStep();
+        track.classList.add("is-dragging");
+        track.setPointerCapture(event.pointerId);
+        stopAutoplay();
+      });
 
-  function goTo(idx) {
-    const max = Math.max(0, cards.length - visibleCount);
-    current = Math.max(0, Math.min(idx, max));
-    const offset = current * getCardWidth();
-    track.style.transform = `translateX(-${offset}px)`;
-    // update dots
-    dotsEl.querySelectorAll('.car-dot').forEach((d, i) => {
-      d.classList.toggle('active', i === current);
+      track.addEventListener("pointermove", (event) => {
+        if (!dragging) return;
+        const delta = startX - event.clientX;
+        track.style.transform = "translateX(" + (-(startOffset + delta)) + "px)";
+      });
+
+      function endDrag(event) {
+        if (!dragging) return;
+        dragging = false;
+        track.classList.remove("is-dragging");
+        const delta = startX - event.clientX;
+        if (Math.abs(delta) > 48) {
+          goTo(delta > 0 ? index + 1 : index - 1);
+        } else {
+          goTo(index);
+        }
+        restartAutoplay();
+      }
+
+      track.addEventListener("pointerup", endDrag);
+      track.addEventListener("pointercancel", endDrag);
+      window.addEventListener("resize", refresh);
+
+      carousel.tabIndex = 0;
+      refresh();
+      startAutoplay();
     });
-    prevBtn.disabled = current === 0;
-    nextBtn.disabled = current >= max;
-  }
-
-  prevBtn.addEventListener('click', () => goTo(current - 1));
-  nextBtn.addEventListener('click', () => goTo(current + 1));
-
-  // drag / swipe
-  let startX = 0, isDragging = false, startTranslate = 0;
-  track.addEventListener('mousedown', e => {
-    isDragging = true;
-    startX = e.clientX;
-    startTranslate = current * getCardWidth();
-    track.classList.add('dragging');
-  });
-  window.addEventListener('mousemove', e => {
-    if (!isDragging) return;
-    const diff = startX - e.clientX;
-    track.style.transform = `translateX(-${startTranslate + diff}px)`;
-  });
-  window.addEventListener('mouseup', e => {
-    if (!isDragging) return;
-    isDragging = false;
-    track.classList.remove('dragging');
-    const diff = startX - e.clientX;
-    if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
-    else goTo(current);
-  });
-  // touch
-  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-  track.addEventListener('touchend', e => {
-    const diff = startX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
-  });
-
-  // resize
-  window.addEventListener('resize', () => {
-    visibleCount = window.innerWidth <= 900 ? 2 : 3;
-    buildDots();
-    goTo(Math.min(current, Math.max(0, cards.length - visibleCount)));
-  });
-
-  buildDots();
-  goTo(0);
-
-  // ── Autoplay ──
-  const AUTOPLAY_MS = 3000;
-  let autoTimer = null;
-
-  function startAutoplay() {
-    stopAutoplay();
-    autoTimer = setInterval(() => {
-      const max = Math.max(0, cards.length - visibleCount);
-      goTo(current >= max ? 0 : current + 1);
-    }, AUTOPLAY_MS);
-  }
-
-  function stopAutoplay() {
-    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
-  }
-
-  // pause on hover / interaction, resume on leave
-  track.closest('.carousel-wrapper').addEventListener('mouseenter', stopAutoplay);
-  track.closest('.carousel-wrapper').addEventListener('mouseleave', startAutoplay);
-  prevBtn.addEventListener('click', () => { stopAutoplay(); startAutoplay(); });
-  nextBtn.addEventListener('click', () => { stopAutoplay(); startAutoplay(); });
-  dotsEl.addEventListener('click', () => { stopAutoplay(); startAutoplay(); });
-
-  startAutoplay();
-})();
-</script>
+  </script>
 </body>
 </html>

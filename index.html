@@ -168,7 +168,7 @@
       margin: 0 auto;
       padding: clamp(3rem, 6vw, 6rem) 0 2.5rem;
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.75fr);
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, 380px);
       align-items: center;
       gap: clamp(2rem, 6vw, 5rem);
     }
@@ -302,6 +302,8 @@
 
     .portrait-panel {
       position: relative;
+      width: min(100%, 360px);
+      justify-self: end;
       padding: 1rem;
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -977,7 +979,8 @@
       }
 
       .portrait-panel {
-        max-width: 520px;
+        max-width: 360px;
+        justify-self: start;
       }
 
       .highlight-strip,
@@ -1025,6 +1028,10 @@
 
       .hero h1 {
         font-size: clamp(3.1rem, 15vw, 5rem);
+      }
+
+      .portrait-panel {
+        width: min(100%, 320px);
       }
 
       .hero-metrics,
@@ -1121,7 +1128,7 @@
 
       <aside class="portrait-panel reveal" aria-label="Profile portrait">
         <div class="portrait-frame">
-          <img src="assets/profile.jpg" alt="Rajesh Chaurasia profile photo" width="960" height="1280">
+          <img src="assets/profile.jpg" alt="Rajesh Chaurasia profile photo" width="480" height="640">
         </div>
         <div class="portrait-caption">
           <div class="caption-top">

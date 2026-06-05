@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rajesh Chaurasia | Senior Solutions Architect & Quantum Researcher</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Exo+2:wght@200;400;600;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #030712;
+    --bg2: #050e1a;
+    --accent: #00f5d4;
+    --accent2: #7b2fff;
+    --accent3: #ff6b35;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --card: rgba(255,255,255,0.03);
+    --border: rgba(0,245,212,0.15);
+    --glow: 0 0 30px rgba(0,245,212,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Exo 2', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── QUANTUM CANVAS BACKGROUND ── */
+  #quantum-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .noise {
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(3,7,18,0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── WRAPPER ── */
+  main { position: relative; z-index: 2; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+  }
+
+  .hero-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px; height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-name {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #fff 30%, var(--accent) 70%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-title {
+    font-size: 1.1rem;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    padding: 0.85rem 2rem;
+    background: var(--accent);
+    color: #000;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    transition: all 0.3s;
+  }
+  .btn-primary:hover { background: #fff; box-shadow: 0 0 30px rgba(0,245,212,0.5); }
+
+  .btn-ghost {
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--border);
+    color: var(--accent);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); background: rgba(0,245,212,0.05); }
+
+  /* Quantum Orbital Viz */
+  .hero-visual {
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+
+  .orbital-container {
+    position: relative;
+    width: 380px; height: 380px;
+  }
+
+  .orbital-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .ring-1 {
+    width: 360px; height: 360px;
+    border-color: rgba(0,245,212,0.15);
+    animation: spin1 20s linear infinite;
+  }
+  .ring-2 {
+    width: 280px; height: 280px;
+    border-color: rgba(123,47,255,0.2);
+    animation: spin2 14s linear infinite reverse;
+    border-style: dashed;
+  }
+  .ring-3 {
+    width: 200px; height: 200px;
+    border-color: rgba(0,245,212,0.3);
+    animation: spin1 9s linear infinite;
+  }
+
+  @keyframes spin1 { to { transform: translate(-50%, -50%) rotate(360deg); } }
+  @keyframes spin2 { to { transform: translate(-50%, -50%) rotate(-360deg); } }
+
+  .orbital-node {
+    position: absolute;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 15px var(--accent), 0 0 30px rgba(0,245,212,0.4);
+    top: -5px; left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .orbital-node2 {
+    background: var(--accent2);
+    box-shadow: 0 0 15px var(--accent2);
+    top: auto; bottom: -5px;
+    width: 8px; height: 8px;
+  }
+
+  .hero-core {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .core-circle {
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,245,212,0.15) 0%, rgba(123,47,255,0.1) 60%, transparent 100%);
+    border: 1px solid rgba(0,245,212,0.3);
+    display: flex; align-items: center; justify-content: center;
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(0,245,212,0.2), inset 0 0 20px rgba(0,245,212,0.05); }
+    50% { box-shadow: 0 0 50px rgba(0,245,212,0.4), inset 0 0 40px rgba(0,245,212,0.1); }
+  }
+
+  .core-text {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.6rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    line-height: 1.8;
+    text-align: center;
+  }
+
+  .stats-row {
+    display: flex; gap: 2.5rem; margin-top: 2.5rem;
+  }
+
+  .stat-item { text-align: left; }
+  .stat-num {
+    font-family: 'Orbitron', monospace;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 6rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex; align-items: center; gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .section-num {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+  }
+
+  .section-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.05em;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+  }
+
+  /* ── EXPERTISE GRID ── */
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .expertise-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  }
+
+  .expertise-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .expertise-card:hover { border-color: rgba(0,245,212,0.4); transform: translateY(-4px); box-shadow: var(--glow); }
+  .expertise-card:hover::before { opacity: 1; }
+
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .card-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+
+  .card-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .card-tags {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin-top: 1rem;
+  }
+
+  .tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(0,245,212,0.07);
+    border: 1px solid rgba(0,245,212,0.2);
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+
+  .tag.purple {
+    background: rgba(123,47,255,0.1);
+    border-color: rgba(123,47,255,0.3);
+    color: #a78bfa;
+  }
+
+  /* ── QUANTUM PROJECTS ── */
+  .quantum-section {
+    background: linear-gradient(135deg, rgba(123,47,255,0.05) 0%, rgba(0,245,212,0.03) 100%);
+    border: 1px solid rgba(123,47,255,0.2);
+    border-radius: 2px;
+    padding: 3rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quantum-section::after {
+    content: 'QUANTUM';
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--accent2);
+    opacity: 0.5;
+    letter-spacing: 0.3em;
+  }
+
+  .project-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--accent), var(--accent2), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding: 0 0 3rem 2rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -5px; top: 0.4rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 15px var(--accent);
+  }
+
+  .timeline-date {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-company {
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.2rem;
+  }
+
+  .timeline-role {
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+  }
+
+  .timeline-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── CERTIFICATIONS ── */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+
+  .cert-card {
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    background: var(--card);
+    display: flex; align-items: flex-start; gap: 1rem;
+    transition: all 0.3s;
+  }
+  .cert-card:hover { border-color: var(--accent2); box-shadow: 0 0 20px rgba(123,47,255,0.15); }
+
+  .cert-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .cert-name {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+
+  .cert-org {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent2);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── SKILLS BAR ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 4rem;
+  }
+
+  .skill-item { margin-bottom: 0.5rem; }
+  .skill-header {
+    display: flex; justify-content: space-between;
+    margin-bottom: 0.4rem;
+  }
+  .skill-name {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text);
+    letter-spacing: 0.05em;
+  }
+  .skill-pct {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+  }
+  .skill-bar {
+    height: 3px;
+    background: rgba(255,255,255,0.07);
+    position: relative;
+    overflow: hidden;
+  }
+  .skill-fill {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    animation: fillBar 1.5s ease-out forwards;
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+  @keyframes fillBar { to { transform: scaleX(1); } }
+
+  /* ── CONTACT ── */
+  #contact {
+    text-align: center;
+    padding: 6rem 4rem;
+    position: relative;
+  }
+
+  .contact-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 300px;
+    background: radial-gradient(ellipse, rgba(0,245,212,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .contact-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .contact-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 3rem;
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .contact-links {
+    display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .contact-link {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+    padding: 0.6rem 1rem;
+    border: 1px solid transparent;
+  }
+  .contact-link:hover { color: var(--accent); border-color: var(--border); }
+  .contact-link-icon { font-size: 1.1rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    position: relative; z-index: 2;
+  }
+
+  .footer-text {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .footer-accent { color: var(--accent); }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── QUANTUM BADGE ── */
+  .quantum-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    background: rgba(123,47,255,0.1);
+    border: 1px solid rgba(123,47,255,0.3);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    color: #a78bfa;
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+  }
+  .quantum-badge::before {
+    content: '⬡';
+    color: var(--accent2);
+    animation: spin1 4s linear infinite;
+    display: inline-block;
+  }
+
+  /* Blinking cursor */
+  .cursor::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+    color: var(--accent);
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { padding: 7rem 1.5rem 3rem; }
+    .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-visual { order: -1; }
+    .orbital-container { width: 280px; height: 280px; }
+    .ring-1 { width: 260px; height: 260px; }
+    .ring-2 { width: 200px; height: 200px; }
+    .ring-3 { width: 140px; height: 140px; }
+    section { padding: 4rem 1.5rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .stats-row { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="quantum-bg"></canvas>
+<div class="noise"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">RC_QUANTUM</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#quantum">Quantum</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section id="hero" style="padding-top:8rem; max-width:100%;">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-tag">Senior Solutions Architect &amp; Quantum Researcher</div>
+      <div class="quantum-badge">Quantum Computing | Liferay DXP | Java Architect</div>
+      <h1 class="hero-name">Rajesh<br>Chaurasia</h1>
+      <div class="hero-title">Building at the intersection of Classical &amp; Quantum</div>
+      <p class="hero-desc">
+        23+ years engineering enterprise portals and Java solutions. Now pioneering Quantum Machine Learning applications — from eye anomaly detection to quantum cryptography — while leading architecture at Orbis International.
+      </p>
+      <div class="hero-btns">
+        <a href="#experience" class="btn-primary">View Experience</a>
+        <a href="#contact" class="btn-ghost">Get In Touch</a>
+      </div>
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-num">23+</div>
+          <div class="stat-label">Years Java</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">13+</div>
+          <div class="stat-label">Years Liferay</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">12+</div>
+          <div class="stat-label">Portal Impls</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Quantum States</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="orbital-container">
+        <div class="orbital-ring ring-1">
+          <div class="orbital-node"></div>
+        </div>
+        <div class="orbital-ring ring-2">
+          <div class="orbital-node orbital-node2"></div>
+        </div>
+        <div class="orbital-ring ring-3">
+          <div class="orbital-node" style="top:auto;bottom:-5px;background:var(--accent3);box-shadow:0 0 15px var(--accent3)"></div>
+        </div>
+        <div class="hero-core">
+          <div class="core-circle">
+            <div class="core-text">
+              |ψ⟩<br>ARCHITECT<br>∧ RESEARCHER
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="section-header fade-up">
+    <span class="section-num">// 01</span>
+    <h2 class="section-title">AREAS OF EXPERTISE</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="expertise-grid">
+
+    <div class="expertise-card fade-up">
+      <span class="card-icon">⚛️</span>
+      <div class="card-title">QUANTUM COMPUTING</div>
+      <div class="card-desc">Quantum Machine Learning, QRNG for cryptography, hybrid quantum-classical models. IIT Delhi & Womanium certified.</div>
+      <div class="card-tags">
+        <span class="tag purple">Qiskit 2.0</span>
+        <span class="tag purple">Classiq</span>
+        <span class="tag purple">Pennylane</span>
+        <span class="tag purple">QML</span>
+        <span class="tag purple">Python</span>
+      </div>
+    </div>
+
+    <div class="expertise-card fade-up">
+      <span class="card-icon">🏛️</span>
+      <div class="card-title">LIFERAY DXP</div>
+      <div class="card-desc">13+ years of Liferay expertise across 6.x, 7.x, DXP. Portal implementations, plugin development, upgrades, performance tuning.</div>
+      <div class="card-tags">
+        <span class="tag">Liferay 7.4</span>
+        <span class="tag">OSGi</span>
+        <span class="tag">MVC Portlet</span>
+        <span class="tag">DXP Upgrade</span>
+      </div>
+    </div>
+
+    <div class="expertise-card fade-up">
+      <span class="card-icon">☕</span>
+      <div class="card-title">JAVA ARCHITECTURE</div>
+      <div class="card-desc">Full-stack enterprise Java since 2002. Spring Boot, JPA, Hibernate, Microservices, REST APIs, CI/CD pipelines.</div>
+      <div class="card-tags">
+        <span class="tag">Java 21</span>
+        <span class="tag">Spring Boot</span>
+        <span class="tag">JPA/Hibernate</span>
+        <span class="tag">Maven</span>
+      </div>
+    </div>
+
+    <div class="expertise-card fade-up">
+      <span class="card-icon">🔬</span>
+      <div class="card-title">QUALITY & DEVOPS</div>
+      <div class="card-desc">Implemented CI pipelines, static code analysis, APM monitoring. Quality initiatives widely praised by clients like McDonald's and HP.</div>
+      <div class="card-tags">
+        <span class="tag">Jenkins</span>
+        <span class="tag">SonarQube</span>
+        <span class="tag">Glowroot</span>
+        <span class="tag">NewRelic</span>
+      </div>
+    </div>
+
+    <div class="expertise-card fade-up">
+      <span class="card-icon">📡</span>
+      <div class="card-title">SOLUTIONS ARCHITECTURE</div>
+      <div class="card-desc">End-to-end solution design for enterprise portals. Technical audits, code reviews, proposal writing, client presentations.</div>
+      <div class="card-tags">
+        <span class="tag">ElasticSearch</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">Oracle</span>
+        <span class="tag">AWS</span>
+      </div>
+    </div>
+
+    <div class="expertise-card fade-up">
+      <span class="card-icon">🎓</span>
+      <div class="card-title">TECHNICAL LEADERSHIP</div>
+      <div class="card-desc">Trainer, mentor, architect. Led teams across Wipro, HCL, Infogain, Accenture. Regular Friday Tech session speaker.</div>
+      <div class="card-tags">
+        <span class="tag">Agile</span>
+        <span class="tag">Training</span>
+        <span class="tag">Mentoring</span>
+        <span class="tag">Proposals</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- QUANTUM PROJECTS -->
+<section id="quantum" style="max-width:1200px;margin:0 auto;padding:0 4rem 6rem;">
+  <div class="section-header fade-up">
+    <span class="section-num">// 02</span>
+    <h2 class="section-title">QUANTUM RESEARCH</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="quantum-section fade-up">
+    <div class="card-tags" style="margin-bottom:1rem;">
+      <span class="tag purple">Qiskit 2.0</span>
+      <span class="tag purple">QML</span>
+      <span class="tag purple">Python 3.13</span>
+      <span class="tag purple">2025 – Present</span>
+    </div>
+    <div class="project-title">Quantum Inspired Image Processing for Accurate Eye Anomaly Detection</div>
+    <div class="project-desc">
+      Developed a Hybrid Quantum Model combining Classical Feature Extraction with Quantum Image Classification for cataract identification. The project leverages quantum ML concepts including feature maps, amplitude encoding, angle encoding, discrete time quantum walks, and swap tests to measure image overlap between test and reference samples. Achieves superior pattern recognition in medical eye images — demonstrating real quantum advantage in healthcare diagnostics.
+    </div>
+    <div class="card-tags">
+      <span class="tag">Amplitude Encoding</span>
+      <span class="tag">Angle Encoding</span>
+      <span class="tag">Quantum Walk</span>
+      <span class="tag">Swap Test</span>
+      <span class="tag">Cataract Detection</span>
+    </div>
+  </div>
+
+  <div class="quantum-section fade-up">
+    <div class="card-tags" style="margin-bottom:1rem;">
+      <span class="tag purple">Qiskit 2.0</span>
+      <span class="tag purple">Cryptography</span>
+      <span class="tag purple">Python 3.13</span>
+      <span class="tag purple">Jan – May 2025</span>
+    </div>
+    <div class="project-title">QRNG Framework — Quantum Random Number Generation for RSA Encryption</div>
+    <div class="project-desc">
+      Built a Quantum Random Number Generator leveraging quantum superposition and entanglement to produce truly random numbers for cryptographic applications. Integrated QRNG into RSA key generation to produce unpredictable keys resistant to pattern-based attacks. Addressed fundamental limitations of classical pseudorandom number generators (PRNGs) in high-security contexts.
+    </div>
+    <div class="card-tags">
+      <span class="tag">Quantum Superposition</span>
+      <span class="tag">Entanglement</span>
+      <span class="tag">RSA Encryption</span>
+      <span class="tag">Quantum Cryptography</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header fade-up">
+    <span class="section-num">// 03</span>
+    <h2 class="section-title">WORK HISTORY</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="timeline">
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-date">AUG 2023 — PRESENT</div>
+      <div class="timeline-company">Orbis International</div>
+      <div class="timeline-role">Senior Solutions Architect</div>
+      <div class="timeline-desc">Lead architecture for Cybersight Consult and Operation Smile portals. Drove successful Liferay 7.1 → DXP 7.4 upgrade. Java 11 & 21, ElasticSearch, MySQL 8.0.</div>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-date">FEB 2023 — JUL 2023</div>
+      <div class="timeline-company">LTIMindtree</div>
+      <div class="timeline-role">Associate Director</div>
+      <div class="timeline-desc">Strategic technology leadership and enterprise architecture advisory in a senior director capacity.</div>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-date">NOV 2019 — JUL 2022</div>
+      <div class="timeline-company">Infogain</div>
+      <div class="timeline-role">Senior Technical Architect</div>
+      <div class="timeline-desc">Led HP SG Partner Portal upgrade from Liferay 6.1 → DXP 7.2. Solved post-upgrade performance issues using Glowroot and NewRelic APM. Won Spearhead and best Liferay trainer awards.</div>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-date">JAN 2017 — JUN 2019</div>
+      <div class="timeline-company">HCL Technologies</div>
+      <div class="timeline-role">Senior Technical Architect</div>
+      <div class="timeline-desc">My Toll logistics portal, McDonald's DEP & Campaign Integration (Adobe Campaign, AEM). Pioneered quality initiatives with SonarQube/SonarLint praised by McDonald's globally.</div>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-date">JUN 2015 — JAN 2016</div>
+      <div class="timeline-company">Iris Software</div>
+      <div class="timeline-role">Senior Solutions Consultant</div>
+      <div class="timeline-desc">LifeCare employee benefits portal — Lifemart, WorkLife, reporting tools for 20M+ lives. Liferay 6.2, Java 1.7.</div>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-date">APR 2014 — JUN 2015</div>
+      <div class="timeline-company">Accenture Services</div>
+      <div class="timeline-role">Software Engineering Associate Manager</div>
+      <div class="timeline-desc">ThomasCook microsite POC using Liferay 6.2. Agile delivery, client demos, offshore team mentoring.</div>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-date">APR 2013 — APR 2014</div>
+      <div class="timeline-company">Wipro Technologies</div>
+      <div class="timeline-role">Project Lead</div>
+      <div class="timeline-desc">Global Employee Intranet Portal with social features and Manager's Area. Liferay 6.2 EE, Spring, Oracle.</div>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-date">DEC 2006 — JUN 2011</div>
+      <div class="timeline-company">HCL Technologies</div>
+      <div class="timeline-role">Lead Engineer</div>
+      <div class="timeline-desc">Kaplan IAP (TDD with Mockito), eText e-publishing, Cambridge Assessment web solutions. Won HCL Innovation Award and Good Practices Award.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="padding-top:0;">
+  <div class="section-header fade-up">
+    <span class="section-num">// 04</span>
+    <h2 class="section-title">TECHNICAL SKILLS</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="skills-grid fade-up">
+    <div class="skill-item">
+      <div class="skill-header"><span class="skill-name">Java / J2EE</span><span class="skill-pct">98%</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="width:98%"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-header"><span class="skill-name">Liferay DXP</span><span class="skill-pct">97%</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="width:97%"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-header"><span class="skill-name">Spring / Spring Boot</span><span class="skill-pct">90%</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-header"><span class="skill-name">Quantum Computing (Qiskit)</span><span class="skill-pct">78%</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-header"><span class="skill-name">Python / QML</span><span class="skill-pct">75%</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-header"><span class="skill-name">ElasticSearch / Databases</span><span class="skill-pct">82%</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-header"><span class="skill-name">DevOps / CI (Jenkins, Sonar)</span><span class="skill-pct">85%</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-header"><span class="skill-name">Solutions Architecture</span><span class="skill-pct">95%</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-header fade-up">
+    <span class="section-num">// 05</span>
+    <h2 class="section-title">CERTIFICATIONS & AWARDS</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="cert-grid">
+    <div class="cert-card fade-up">
+      <span class="cert-icon">⚛️</span>
+      <div>
+        <div class="cert-name">QNickel Certification</div>
+        <div class="cert-org">WOMANIUM + QWORLD · 2024</div>
+      </div>
+    </div>
+    <div class="cert-card fade-up">
+      <span class="cert-icon">🔬</span>
+      <div>
+        <div class="cert-name">QBronze Certification</div>
+        <div class="cert-org">WOMANIUM + QWORLD · 2024</div>
+      </div>
+    </div>
+    <div class="cert-card fade-up">
+      <span class="cert-icon">🧠</span>
+      <div>
+        <div class="cert-name">Pennylane QML Certified</div>
+        <div class="cert-org">WOMANIUM Global Quantum+AI · 2024</div>
+      </div>
+    </div>
+    <div class="cert-card fade-up">
+      <span class="cert-icon">🏛️</span>
+      <div>
+        <div class="cert-name">Classiq Certification</div>
+        <div class="cert-org">WOMANIUM · 2024</div>
+      </div>
+    </div>
+    <div class="cert-card fade-up">
+      <span class="cert-icon">🎓</span>
+      <div>
+        <div class="cert-name">Quantum Computing & ML</div>
+        <div class="cert-org">IIT Delhi CEP · 2024</div>
+      </div>
+    </div>
+    <div class="cert-card fade-up">
+      <span class="cert-icon">🏆</span>
+      <div>
+        <div class="cert-name">Spearhead Award</div>
+        <div class="cert-org">Infogain · 2020</div>
+      </div>
+    </div>
+    <div class="cert-card fade-up">
+      <span class="cert-icon">⭐</span>
+      <div>
+        <div class="cert-name">Spot Award JFM</div>
+        <div class="cert-org">Infogain · 2021</div>
+      </div>
+    </div>
+    <div class="cert-card fade-up">
+      <span class="cert-icon">🥇</span>
+      <div>
+        <div class="cert-name">Best Liferay Trainer Award ×2</div>
+        <div class="cert-org">Infogain</div>
+      </div>
+    </div>
+    <div class="cert-card fade-up">
+      <span class="cert-icon">💡</span>
+      <div>
+        <div class="cert-name">HCL Innovation Award</div>
+        <div class="cert-org">HCL Technologies</div>
+      </div>
+    </div>
+    <div class="cert-card fade-up">
+      <span class="cert-icon">🌐</span>
+      <div>
+        <div class="cert-name">Global Quantum+AI Program</div>
+        <div class="cert-org">Womanium 2024 — Conspicuity Detection in Production</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="max-width:100%;padding:6rem 4rem;">
+  <div class="contact-glow"></div>
+  <div class="contact-title fade-up">INITIATE CONTACT</div>
+  <div class="contact-sub fade-up">// Let's build something extraordinary — classical or quantum</div>
+
+  <div class="contact-links fade-up">
+    <a href="mailto:rajesh.yalee@gmail.com" class="contact-link">
+      <span class="contact-link-icon">✉</span> rajesh.yalee@gmail.com
+    </a>
+    <a href="tel:+919810807630" class="contact-link">
+      <span class="contact-link-icon">📱</span> +91-9810807630
+    </a>
+    <a href="https://github.com/rajesh-chaurasia-01/" target="_blank" class="contact-link">
+      <span class="contact-link-icon">🐙</span> github.com/rajesh-chaurasia-01
+    </a>
+    <a href="https://www.linkedin.com/in/rajesh-chaurasia-6241b21b/" target="_blank" class="contact-link">
+      <span class="contact-link-icon">💼</span> linkedin.com/in/rajesh-chaurasia
+    </a>
+  </div>
+
+  <div class="fade-up" style="font-family:'Share Tech Mono',monospace;font-size:0.75rem;color:var(--muted);letter-spacing:0.1em;">
+    📍 Ghaziabad, UP, India &nbsp;|&nbsp; Open to remote &amp; hybrid opportunities
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-text">© 2025 <span class="footer-accent">RAJESH CHAURASIA</span> — Senior Solutions Architect</div>
+  <div class="footer-text">Built with <span class="footer-accent">|ψ⟩</span> quantum inspiration</div>
+</footer>
+
+<script>
+// ── QUANTUM PARTICLE CANVAS ──
+const canvas = document.getElementById('quantum-bg');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+const particles = [];
+const connections = [];
+
+for (let i = 0; i < 80; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    vx: (Math.random() - 0.5) * 0.4,
+    vy: (Math.random() - 0.5) * 0.4,
+    r: Math.random() * 1.5 + 0.5,
+    alpha: Math.random() * 0.5 + 0.2,
+    color: Math.random() > 0.7 ? '#7b2fff' : '#00f5d4'
+  });
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw connections
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 120) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(0,245,212,${(1 - dist / 120) * 0.06})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+
+  // Draw particles
+  particles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.x < 0) p.x = canvas.width;
+    if (p.x > canvas.width) p.x = 0;
+    if (p.y < 0) p.y = canvas.height;
+    if (p.y > canvas.height) p.y = 0;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = p.color + Math.floor(p.alpha * 255).toString(16).padStart(2, '0');
+    ctx.fill();
+  });
+
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// ── SCROLL ANIMATIONS ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── SKILL BAR ANIMATION ──
+const skillObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.skill-fill').forEach(bar => {
+        bar.style.animation = 'none';
+        void bar.offsetWidth;
+        bar.style.animation = 'fillBar 1.5s ease-out forwards';
+      });
+    }
+  });
+}, { threshold: 0.3 });
+
+const skillsSection = document.getElementById('skills');
+if (skillsSection) skillObserver.observe(skillsSection);
+</script>
+</body>
+</html>

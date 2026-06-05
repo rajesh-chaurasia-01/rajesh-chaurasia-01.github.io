@@ -857,9 +857,21 @@
     }
 
     .disease-card {
+      position: relative;
       min-height: 182px;
       padding: 1rem;
       background: rgba(255, 255, 255, 0.84);
+      cursor: help;
+      outline: none;
+      isolation: isolate;
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    }
+
+    .disease-card:hover,
+    .disease-card:focus-visible {
+      border-color: rgba(47, 111, 214, 0.42);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
     }
 
     .disease-card i {
@@ -886,6 +898,44 @@
       color: var(--muted);
       font-size: 0.9rem;
       line-height: 1.5;
+    }
+
+    .disease-tooltip {
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      bottom: calc(100% + 0.65rem);
+      z-index: 8;
+      padding: 0.75rem 0.85rem;
+      border: 1px solid rgba(23, 33, 38, 0.12);
+      border-radius: var(--radius);
+      background: var(--ink);
+      color: #fff;
+      box-shadow: var(--shadow-md);
+      font-size: 0.82rem;
+      font-weight: 650;
+      line-height: 1.45;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(6px);
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    .disease-tooltip::after {
+      content: "";
+      position: absolute;
+      left: 1rem;
+      bottom: -7px;
+      width: 12px;
+      height: 12px;
+      background: var(--ink);
+      transform: rotate(45deg);
+    }
+
+    .disease-card:hover .disease-tooltip,
+    .disease-card:focus-visible .disease-tooltip {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .portal-stack {
@@ -1588,25 +1638,29 @@
       </div>
 
       <div class="disease-grid" aria-label="RetinaVision target conditions">
-        <article class="disease-card reveal">
+        <article class="disease-card reveal" tabindex="0" aria-describedby="tooltip-cataract">
           <i class="fa-solid fa-cloud" aria-hidden="true"></i>
           <h3>Cataract</h3>
           <p>Lens haze, reduced contrast, color shift, and image clarity patterns for early screening.</p>
+          <span class="disease-tooltip" id="tooltip-cataract" role="tooltip">A cataract is clouding of the eye's natural lens, often causing blurred vision, glare, faded colors, and reduced contrast.</span>
         </article>
-        <article class="disease-card reveal">
+        <article class="disease-card reveal" tabindex="0" aria-describedby="tooltip-glaucoma">
           <i class="fa-solid fa-circle-dot" aria-hidden="true"></i>
           <h3>Glaucoma</h3>
           <p>Cup-to-disc ratio, RNFL thickness, optic disc asymmetry, and high-risk structural cues.</p>
+          <span class="disease-tooltip" id="tooltip-glaucoma" role="tooltip">Glaucoma is a group of eye diseases that damage the optic nerve, commonly linked with eye pressure and gradual peripheral vision loss.</span>
         </article>
-        <article class="disease-card reveal">
+        <article class="disease-card reveal" tabindex="0" aria-describedby="tooltip-diabetic-retinopathy">
           <i class="fa-solid fa-droplet" aria-hidden="true"></i>
           <h3>Diabetic Retinopathy</h3>
           <p>Microaneurysms, exudates, vessel tortuosity, and neovascularization indicators.</p>
+          <span class="disease-tooltip" id="tooltip-diabetic-retinopathy" role="tooltip">Diabetic retinopathy is diabetes-related damage to retinal blood vessels that can cause bleeding, swelling, leakage, and vision loss.</span>
         </article>
-        <article class="disease-card reveal">
+        <article class="disease-card reveal" tabindex="0" aria-describedby="tooltip-amd">
           <i class="fa-solid fa-bullseye" aria-hidden="true"></i>
           <h3>AMD</h3>
           <p>Drusen, retinal pigment epithelium changes, macular damage, and neovascularization signals.</p>
+          <span class="disease-tooltip" id="tooltip-amd" role="tooltip">AMD means age-related macular degeneration, a condition that affects the macula and can reduce sharp central vision.</span>
         </article>
       </div>
 

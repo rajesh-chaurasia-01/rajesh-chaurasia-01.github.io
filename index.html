@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rajesh Chaurasia | Senior Solutions Architect & Quantum Researcher</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 <style>
   :root {
     --bg:       #f7f5f0;
@@ -338,22 +339,34 @@
     align-self: center;
   }
 
-  /* ── EXPERTISE CARDS ── */
-  .exp-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.2rem;
+  /* ── EXPERTISE CAROUSEL ── */
+  .carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding: 0.5rem 0 2.5rem;
   }
+
+  .exp-grid {
+    display: flex;
+    gap: 1.4rem;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    cursor: grab;
+    user-select: none;
+  }
+  .exp-grid.dragging { cursor: grabbing; transition: none; }
 
   .exp-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-radius: 6px;
     padding: 2rem 1.8rem;
     transition: all 0.3s;
     box-shadow: var(--card-shadow);
     position: relative;
     overflow: hidden;
+    flex: 0 0 calc(33.333% - 1rem);
+    min-width: 0;
   }
   .exp-card::after {
     content: '';
@@ -365,8 +378,93 @@
     transition: transform 0.3s;
     transform-origin: left;
   }
-  .exp-card:hover { transform: translateY(-3px); box-shadow: var(--card-hover); }
+  .exp-card:hover { transform: translateY(-4px); box-shadow: var(--card-hover); }
   .exp-card:hover::after { transform: scaleX(1); }
+
+  /* carousel nav */
+  .carousel-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+  .car-btn {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--navy);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    box-shadow: var(--card-shadow);
+    flex-shrink: 0;
+  }
+  .car-btn:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .car-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .car-btn:hover:disabled { background: var(--surface); color: var(--navy); border-color: var(--border); }
+
+  .car-dots {
+    display: flex; gap: 0.45rem; align-items: center;
+  }
+  .car-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: all 0.25s;
+    border: none;
+    padding: 0;
+  }
+  .car-dot.active {
+    background: var(--teal);
+    width: 22px;
+    border-radius: 4px;
+  }
+
+  /* ── TOOLTIP ── */
+  .exp-card { position: relative; }
+  .ec-tooltip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    background: var(--navy);
+    color: #fff;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    padding: 0.55rem 0.9rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+    z-index: 50;
+    box-shadow: 0 4px 16px rgba(10,22,40,0.2);
+    max-width: 220px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.55;
+  }
+  .ec-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%; left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--navy);
+  }
+  .exp-card:hover .ec-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    .exp-card { flex: 0 0 calc(50% - 0.7rem); }
+  }
 
   .ec-icon { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
   .ec-title {
@@ -377,6 +475,27 @@
     margin-bottom: 0.7rem;
     letter-spacing: 0.01em;
   }
+  .ec-icon i {
+    font-size: 1.8rem;
+    background: linear-gradient(135deg, var(--teal), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cert-icon i {
+    font-size: 1.4rem;
+    color: var(--teal);
+  }
+
+  .c-link i {
+    font-size: 0.85rem;
+    color: var(--teal);
+    flex-shrink: 0;
+  }
+
+  .location-note i { color: var(--teal); margin-right: 0.25rem; }
+
   .ec-desc {
     font-size: 0.84rem;
     color: var(--muted);
@@ -654,6 +773,7 @@
     footer, #contact-section { padding-left: 1.5rem; padding-right: 1.5rem; }
     .stats-strip { gap: 1.5rem; flex-wrap: wrap; }
     .hero-name { font-size: 2.8rem; }
+    .exp-card { flex: 0 0 calc(100% - 0rem); }
   }
 </style>
 </head>
@@ -736,74 +856,102 @@
     <div class="section-rule"></div>
   </div>
 
-  <div class="exp-grid">
-    <div class="exp-card reveal">
-      <span class="ec-icon">⚛️</span>
-      <div class="ec-title">Quantum Computing</div>
-      <div class="ec-desc">Quantum Machine Learning, QRNG for cryptography, hybrid quantum-classical models. IIT Delhi &amp; Womanium certified.</div>
-      <div class="tag-row">
-        <span class="tag t-violet">Qiskit 2.0</span>
-        <span class="tag t-violet">Classiq</span>
-        <span class="tag t-violet">Pennylane</span>
-        <span class="tag t-violet">QML</span>
+  <div class="carousel-wrapper reveal">
+    <div class="exp-grid" id="expCarousel">
+
+      <!-- Card 1 -->
+      <div class="exp-card">
+        <div class="ec-tooltip">Hybrid QML models, QRNG cryptography &amp; amplitude encoding — certified by IIT Delhi &amp; Womanium 2024</div>
+        <span class="ec-icon"><i class="fa-solid fa-atom"></i></span>
+        <div class="ec-title">Quantum Computing</div>
+        <div class="ec-desc">Quantum Machine Learning, QRNG for cryptography, hybrid quantum-classical models. IIT Delhi &amp; Womanium certified.</div>
+        <div class="tag-row">
+          <span class="tag t-violet">Qiskit 2.0</span>
+          <span class="tag t-violet">Classiq</span>
+          <span class="tag t-violet">Pennylane</span>
+          <span class="tag t-violet">QML</span>
+        </div>
       </div>
-    </div>
-    <div class="exp-card reveal">
-      <span class="ec-icon">🏛️</span>
-      <div class="ec-title">Liferay DXP</div>
-      <div class="ec-desc">13+ years across Liferay 6.x, 7.x, DXP. Portal implementations, plugin development, upgrades, performance tuning.</div>
-      <div class="tag-row">
-        <span class="tag t-teal">Liferay 7.4</span>
-        <span class="tag t-teal">OSGi</span>
-        <span class="tag t-teal">MVC Portlet</span>
-        <span class="tag t-teal">DXP Upgrade</span>
+
+      <!-- Card 2 -->
+      <div class="exp-card">
+        <div class="ec-tooltip">13+ years — from 6.x plugins to DXP 7.4 OSGi modules, full upgrade cycles, performance tuning &amp; theme customisation</div>
+        <span class="ec-icon"><i class="fa-solid fa-layer-group"></i></span>
+        <div class="ec-title">Liferay DXP</div>
+        <div class="ec-desc">13+ years across Liferay 6.x, 7.x, DXP. Portal implementations, plugin development, upgrades, performance tuning.</div>
+        <div class="tag-row">
+          <span class="tag t-teal">Liferay 7.4</span>
+          <span class="tag t-teal">OSGi</span>
+          <span class="tag t-teal">MVC Portlet</span>
+          <span class="tag t-teal">DXP Upgrade</span>
+        </div>
       </div>
-    </div>
-    <div class="exp-card reveal">
-      <span class="ec-icon">☕</span>
-      <div class="ec-title">Java Architecture</div>
-      <div class="ec-desc">Full-stack enterprise Java since 2002. Spring Boot, JPA, Hibernate, REST APIs, CI/CD pipelines.</div>
-      <div class="tag-row">
-        <span class="tag t-navy">Java 21</span>
-        <span class="tag t-navy">Spring Boot</span>
-        <span class="tag t-navy">JPA/Hibernate</span>
-        <span class="tag t-navy">Maven</span>
+
+      <!-- Card 3 -->
+      <div class="exp-card">
+        <div class="ec-tooltip">Full-stack enterprise Java since 2002 — REST APIs, Spring Boot microservices, JPA, Hibernate, Maven CI/CD pipelines</div>
+        <span class="ec-icon"><i class="fa-brands fa-java"></i></span>
+        <div class="ec-title">Java Architecture</div>
+        <div class="ec-desc">Full-stack enterprise Java since 2002. Spring Boot, JPA, Hibernate, REST APIs, CI/CD pipelines.</div>
+        <div class="tag-row">
+          <span class="tag t-navy">Java 21</span>
+          <span class="tag t-navy">Spring Boot</span>
+          <span class="tag t-navy">JPA/Hibernate</span>
+          <span class="tag t-navy">Maven</span>
+        </div>
       </div>
-    </div>
-    <div class="exp-card reveal">
-      <span class="ec-icon">🔬</span>
-      <div class="ec-title">Quality &amp; DevOps</div>
-      <div class="ec-desc">CI pipelines, static code analysis, APM monitoring. Quality initiatives praised by McDonald's and HP globally.</div>
-      <div class="tag-row">
-        <span class="tag t-gold">Jenkins</span>
-        <span class="tag t-gold">SonarQube</span>
-        <span class="tag t-gold">Glowroot</span>
-        <span class="tag t-gold">NewRelic</span>
+
+      <!-- Card 4 -->
+      <div class="exp-card">
+        <div class="ec-tooltip">CI/CD pipelines, static analysis &amp; APM — quality standards praised by McDonald's globally &amp; HP partner teams</div>
+        <span class="ec-icon"><i class="fa-solid fa-gears"></i></span>
+        <div class="ec-title">Quality &amp; DevOps</div>
+        <div class="ec-desc">CI pipelines, static code analysis, APM monitoring. Quality initiatives praised by McDonald's and HP globally.</div>
+        <div class="tag-row">
+          <span class="tag t-gold">Jenkins</span>
+          <span class="tag t-gold">SonarQube</span>
+          <span class="tag t-gold">Glowroot</span>
+          <span class="tag t-gold">NewRelic</span>
+        </div>
       </div>
-    </div>
-    <div class="exp-card reveal">
-      <span class="ec-icon">📡</span>
-      <div class="ec-title">Solutions Architecture</div>
-      <div class="ec-desc">End-to-end solution design for enterprise portals. Technical audits, code reviews, proposal writing, client presentations.</div>
-      <div class="tag-row">
-        <span class="tag t-teal">ElasticSearch</span>
-        <span class="tag t-teal">MySQL</span>
-        <span class="tag t-teal">Oracle</span>
-        <span class="tag t-teal">AWS</span>
+
+      <!-- Card 5 -->
+      <div class="exp-card">
+        <div class="ec-tooltip">End-to-end solution design for global enterprise portals — technical audits, RFP proposals &amp; C-level presentations</div>
+        <span class="ec-icon"><i class="fa-solid fa-diagram-project"></i></span>
+        <div class="ec-title">Solutions Architecture</div>
+        <div class="ec-desc">End-to-end solution design for enterprise portals. Technical audits, code reviews, proposal writing, client presentations.</div>
+        <div class="tag-row">
+          <span class="tag t-teal">ElasticSearch</span>
+          <span class="tag t-teal">MySQL</span>
+          <span class="tag t-teal">Oracle</span>
+          <span class="tag t-teal">AWS</span>
+        </div>
       </div>
-    </div>
-    <div class="exp-card reveal">
-      <span class="ec-icon">🎓</span>
-      <div class="ec-title">Technical Leadership</div>
-      <div class="ec-desc">Trainer, mentor, architect. Led teams across Wipro, HCL, Infogain, Accenture. Regular Friday Tech session speaker.</div>
-      <div class="tag-row">
-        <span class="tag t-navy">Agile</span>
-        <span class="tag t-navy">Training</span>
-        <span class="tag t-navy">Mentoring</span>
-        <span class="tag t-navy">Proposals</span>
+
+      <!-- Card 6 -->
+      <div class="exp-card">
+        <div class="ec-tooltip">Trained &amp; mentored 50+ engineers across Wipro, HCL, Infogain &amp; Accenture — Best Liferay Trainer Award ×2</div>
+        <span class="ec-icon"><i class="fa-solid fa-users-gear"></i></span>
+        <div class="ec-title">Technical Leadership</div>
+        <div class="ec-desc">Trainer, mentor, architect. Led teams across Wipro, HCL, Infogain, Accenture. Regular Friday Tech session speaker.</div>
+        <div class="tag-row">
+          <span class="tag t-navy">Agile</span>
+          <span class="tag t-navy">Training</span>
+          <span class="tag t-navy">Mentoring</span>
+          <span class="tag t-navy">Proposals</span>
+        </div>
       </div>
+
+    </div><!-- /exp-grid -->
+
+    <!-- nav -->
+    <div class="carousel-nav">
+      <button class="car-btn" id="carPrev" aria-label="Previous"><i class="fa-solid fa-arrow-left"></i></button>
+      <div class="car-dots" id="carDots"></div>
+      <button class="car-btn" id="carNext" aria-label="Next"><i class="fa-solid fa-arrow-right"></i></button>
     </div>
-  </div>
+  </div><!-- /carousel-wrapper -->
 </div>
 
 <!-- ── QUANTUM RESEARCH ── -->
@@ -965,16 +1113,16 @@
   </div>
 
   <div class="cert-grid">
-    <div class="cert-card reveal"><span class="cert-icon">⚛️</span><div><div class="cert-name">QNickel Certification</div><div class="cert-org">Womanium + QWorld · 2024</div></div></div>
-    <div class="cert-card reveal"><span class="cert-icon">🔬</span><div><div class="cert-name">QBronze Certification</div><div class="cert-org">Womanium + QWorld · 2024</div></div></div>
-    <div class="cert-card reveal"><span class="cert-icon">🧠</span><div><div class="cert-name">Pennylane QML Certified</div><div class="cert-org">Womanium Global Quantum+AI · 2024</div></div></div>
-    <div class="cert-card reveal"><span class="cert-icon">🏛️</span><div><div class="cert-name">Classiq Certification</div><div class="cert-org">Womanium · 2024</div></div></div>
-    <div class="cert-card reveal"><span class="cert-icon">🎓</span><div><div class="cert-name">Quantum Computing &amp; ML</div><div class="cert-org">IIT Delhi CEP · 2024</div></div></div>
-    <div class="cert-card reveal"><span class="cert-icon">🌐</span><div><div class="cert-name">Global Quantum+AI Program</div><div class="cert-org">Womanium 2024</div></div></div>
-    <div class="cert-card reveal"><span class="cert-icon">🏆</span><div><div class="cert-name">Spearhead Award</div><div class="cert-org">Infogain · 2020</div></div></div>
-    <div class="cert-card reveal"><span class="cert-icon">⭐</span><div><div class="cert-name">Spot Award JFM</div><div class="cert-org">Infogain · 2021</div></div></div>
-    <div class="cert-card reveal"><span class="cert-icon">🥇</span><div><div class="cert-name">Best Liferay Trainer ×2</div><div class="cert-org">Infogain</div></div></div>
-    <div class="cert-card reveal"><span class="cert-icon">💡</span><div><div class="cert-name">HCL Innovation Award</div><div class="cert-org">HCL Technologies</div></div></div>
+    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-atom"></i></span><div><div class="cert-name">QNickel Certification</div><div class="cert-org">Womanium + QWorld · 2024</div></div></div>
+    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-microscope"></i></span><div><div class="cert-name">QBronze Certification</div><div class="cert-org">Womanium + QWorld · 2024</div></div></div>
+    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-brain"></i></span><div><div class="cert-name">Pennylane QML Certified</div><div class="cert-org">Womanium Global Quantum+AI · 2024</div></div></div>
+    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-building-columns"></i></span><div><div class="cert-name">Classiq Certification</div><div class="cert-org">Womanium · 2024</div></div></div>
+    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-graduation-cap"></i></span><div><div class="cert-name">Quantum Computing &amp; ML</div><div class="cert-org">IIT Delhi CEP · 2024</div></div></div>
+    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-globe"></i></span><div><div class="cert-name">Global Quantum+AI Program</div><div class="cert-org">Womanium 2024</div></div></div>
+    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-trophy"></i></span><div><div class="cert-name">Spearhead Award</div><div class="cert-org">Infogain · 2020</div></div></div>
+    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-star"></i></span><div><div class="cert-name">Spot Award JFM</div><div class="cert-org">Infogain · 2021</div></div></div>
+    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-medal"></i></span><div><div class="cert-name">Best Liferay Trainer ×2</div><div class="cert-org">Infogain</div></div></div>
+    <div class="cert-card reveal"><span class="cert-icon"><i class="fa-solid fa-lightbulb"></i></span><div><div class="cert-name">HCL Innovation Award</div><div class="cert-org">HCL Technologies</div></div></div>
   </div>
 </div>
 
@@ -987,12 +1135,12 @@
     <div class="contact-heading reveal">Let's Build Something<br><em style="font-style:italic;color:var(--teal)">Extraordinary</em></div>
     <div class="contact-sub reveal">Classical, quantum, or somewhere in between</div>
     <div class="contact-links reveal">
-      <a href="mailto:rajesh.yalee@gmail.com" class="c-link">✉ rajesh.yalee@gmail.com</a>
-      <a href="tel:+919810807630" class="c-link">📱 +91-9810807630</a>
-      <a href="https://github.com/rajesh-chaurasia-01/" target="_blank" class="c-link">🐙 GitHub</a>
-      <a href="https://www.linkedin.com/in/rajesh-chaurasia-6241b21b/" target="_blank" class="c-link">💼 LinkedIn</a>
+      <a href="mailto:rajesh.yalee@gmail.com" class="c-link"><i class="fa-solid fa-envelope"></i> rajesh.yalee@gmail.com</a>
+      <a href="tel:+919810807630" class="c-link"><i class="fa-solid fa-mobile-screen"></i> +91-9810807630</a>
+      <a href="https://github.com/rajesh-chaurasia-01/" target="_blank" class="c-link"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="https://www.linkedin.com/in/rajesh-chaurasia-6241b21b/" target="_blank" class="c-link"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
     </div>
-    <div class="location-note reveal">📍 Ghaziabad, UP, India &nbsp;·&nbsp; Open to remote &amp; hybrid</div>
+    <div class="location-note reveal"><i class="fa-solid fa-location-dot"></i> Ghaziabad, UP, India &nbsp;·&nbsp; Open to remote &amp; hybrid</div>
   </div>
 </section>
 
@@ -1002,7 +1150,7 @@
 </footer>
 
 <script>
-// Scroll reveal
+// ── Scroll reveal ──
 const io = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
@@ -1012,7 +1160,7 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// Skill bar trigger
+// ── Skill bar trigger ──
 const skillIO = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -1026,6 +1174,119 @@ const skillIO = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 const sk = document.getElementById('skills');
 if (sk) skillIO.observe(sk);
+
+// ── Expertise Carousel ──
+(function () {
+  const track   = document.getElementById('expCarousel');
+  const prevBtn = document.getElementById('carPrev');
+  const nextBtn = document.getElementById('carNext');
+  const dotsEl  = document.getElementById('carDots');
+  if (!track) return;
+
+  const cards = Array.from(track.querySelectorAll('.exp-card'));
+  let visibleCount = window.innerWidth <= 900 ? 2 : 3;
+  const totalSlides = cards.length - visibleCount + 1; // positions 0..n
+  let current = 0;
+
+  // Build dots
+  function buildDots() {
+    dotsEl.innerHTML = '';
+    const count = Math.max(1, cards.length - visibleCount + 1);
+    for (let i = 0; i < count; i++) {
+      const d = document.createElement('button');
+      d.className = 'car-dot' + (i === current ? ' active' : '');
+      d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      d.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(d);
+    }
+  }
+
+  function getCardWidth() {
+    if (!cards[0]) return 0;
+    const style = window.getComputedStyle(track);
+    const gap   = parseFloat(style.gap) || 22;
+    return cards[0].offsetWidth + gap;
+  }
+
+  function goTo(idx) {
+    const max = Math.max(0, cards.length - visibleCount);
+    current = Math.max(0, Math.min(idx, max));
+    const offset = current * getCardWidth();
+    track.style.transform = `translateX(-${offset}px)`;
+    // update dots
+    dotsEl.querySelectorAll('.car-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current >= max;
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  // drag / swipe
+  let startX = 0, isDragging = false, startTranslate = 0;
+  track.addEventListener('mousedown', e => {
+    isDragging = true;
+    startX = e.clientX;
+    startTranslate = current * getCardWidth();
+    track.classList.add('dragging');
+  });
+  window.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    const diff = startX - e.clientX;
+    track.style.transform = `translateX(-${startTranslate + diff}px)`;
+  });
+  window.addEventListener('mouseup', e => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.classList.remove('dragging');
+    const diff = startX - e.clientX;
+    if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+    else goTo(current);
+  });
+  // touch
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+  });
+
+  // resize
+  window.addEventListener('resize', () => {
+    visibleCount = window.innerWidth <= 900 ? 2 : 3;
+    buildDots();
+    goTo(Math.min(current, Math.max(0, cards.length - visibleCount)));
+  });
+
+  buildDots();
+  goTo(0);
+
+  // ── Autoplay ──
+  const AUTOPLAY_MS = 3000;
+  let autoTimer = null;
+
+  function startAutoplay() {
+    stopAutoplay();
+    autoTimer = setInterval(() => {
+      const max = Math.max(0, cards.length - visibleCount);
+      goTo(current >= max ? 0 : current + 1);
+    }, AUTOPLAY_MS);
+  }
+
+  function stopAutoplay() {
+    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+  }
+
+  // pause on hover / interaction, resume on leave
+  track.closest('.carousel-wrapper').addEventListener('mouseenter', stopAutoplay);
+  track.closest('.carousel-wrapper').addEventListener('mouseleave', startAutoplay);
+  prevBtn.addEventListener('click', () => { stopAutoplay(); startAutoplay(); });
+  nextBtn.addEventListener('click', () => { stopAutoplay(); startAutoplay(); });
+  dotsEl.addEventListener('click', () => { stopAutoplay(); startAutoplay(); });
+
+  startAutoplay();
+})();
 </script>
 </body>
 </html>
